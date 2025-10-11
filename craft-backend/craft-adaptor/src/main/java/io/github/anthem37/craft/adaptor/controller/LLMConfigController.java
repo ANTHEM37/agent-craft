@@ -2,6 +2,7 @@ package io.github.anthem37.craft.adaptor.controller;
 
 import io.github.anthem37.craft.adaptor.controller.dto.request.*;
 import io.github.anthem37.craft.adaptor.controller.dto.response.Response;
+import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.service.ILLMConfigService;
 import jakarta.validation.Valid;
@@ -80,4 +81,12 @@ public class LLMConfigController {
         return Response.ok(count);
     }
 
+    /**
+     * 分页查询
+     */
+    @PostMapping("/page")
+    public Response<PageDTO<LLMConfigDTO>> page(@Valid @RequestBody PageLLMConfigRequest request) {
+        PageDTO<LLMConfigDTO> page = llmConfigService.page(request);
+        return Response.ok(page);
+    }
 }

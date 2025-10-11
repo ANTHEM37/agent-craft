@@ -1,6 +1,7 @@
 package io.github.anthem37.craft.application.llm.repository;
 
 
+import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 
 import java.util.List;
@@ -36,4 +37,14 @@ public interface ILLMConfigRepository {
      * @return LLM配置数量
      */
     Long countByModelName(String modelName);
+
+    /**
+     * 分页查询LLM配置
+     *
+     * @param current   当前页码
+     * @param size      每页数量
+     * @param modelName 模型名称
+     * @return LLM配置分页结果
+     */
+    PageDTO<LLMConfigDTO> pageByModelName(long current, long size, String modelName);
 }

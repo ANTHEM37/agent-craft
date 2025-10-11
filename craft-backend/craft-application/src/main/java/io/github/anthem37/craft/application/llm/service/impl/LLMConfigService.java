@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.application.llm.service.impl;
 
+import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
 import io.github.anthem37.craft.application.llm.dto.command.DeleteLLMConfigCommand;
@@ -7,6 +8,7 @@ import io.github.anthem37.craft.application.llm.dto.command.UpdateLLMConfigComma
 import io.github.anthem37.craft.application.llm.dto.query.CountLLMConfigQuery;
 import io.github.anthem37.craft.application.llm.dto.query.FindOneLLMConfigQuery;
 import io.github.anthem37.craft.application.llm.dto.query.ListLLMConfigQuery;
+import io.github.anthem37.craft.application.llm.dto.query.PageLLMConfigQuery;
 import io.github.anthem37.craft.application.llm.service.ILLMConfigService;
 import io.github.anthem37.easy.ddd.application.AbstractApplicationService;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandBus;
@@ -59,6 +61,11 @@ public class LLMConfigService extends AbstractApplicationService implements ILLM
 
     @Override
     public Long count(CountLLMConfigQuery query) {
+        return sendQuery(query);
+    }
+
+    @Override
+    public PageDTO<LLMConfigDTO> page(PageLLMConfigQuery query) {
         return sendQuery(query);
     }
 }

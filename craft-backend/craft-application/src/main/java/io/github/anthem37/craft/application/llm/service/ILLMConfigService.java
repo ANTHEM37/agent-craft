@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.application.llm.service;
 
+import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
 import io.github.anthem37.craft.application.llm.dto.command.DeleteLLMConfigCommand;
@@ -7,6 +8,7 @@ import io.github.anthem37.craft.application.llm.dto.command.UpdateLLMConfigComma
 import io.github.anthem37.craft.application.llm.dto.query.CountLLMConfigQuery;
 import io.github.anthem37.craft.application.llm.dto.query.FindOneLLMConfigQuery;
 import io.github.anthem37.craft.application.llm.dto.query.ListLLMConfigQuery;
+import io.github.anthem37.craft.application.llm.dto.query.PageLLMConfigQuery;
 
 import java.util.List;
 
@@ -62,4 +64,12 @@ public interface ILLMConfigService {
      * @return LLM配置数量
      */
     Long count(CountLLMConfigQuery query);
+
+    /**
+     * 分页查询LLM配置
+     *
+     * @param query 分页查询LLM配置查询
+     * @return LLM配置DTO分页
+     */
+    PageDTO<LLMConfigDTO> page(PageLLMConfigQuery query);
 }
