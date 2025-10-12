@@ -14,7 +14,7 @@ import java.util.List;
  * 额外配置信息，包含模型的详细参数
  *
  * @author hb28301
- * @date 2025/10/10 19:08:27
+ * @since 2025/10/10 19:08:27
  */
 @Data
 @AllArgsConstructor

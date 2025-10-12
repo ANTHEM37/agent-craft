@@ -1,7 +1,7 @@
-package io.github.anthem37.craft.adaptor.controller;
+package io.github.anthem37.craft.adaptor.llm.controller;
 
-import io.github.anthem37.craft.adaptor.controller.dto.request.*;
-import io.github.anthem37.craft.adaptor.controller.dto.response.Response;
+import io.github.anthem37.craft.adaptor.common.dto.response.Response;
+import io.github.anthem37.craft.adaptor.llm.controller.dto.request.*;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.service.ILLMConfigService;
@@ -18,7 +18,7 @@ import java.util.List;
  * LLM配置控制器
  *
  * @author hb28301
- * @date 2025/10/11 17:46:01
+ * @since 2025/10/11 17:46:01
  */
 @RestController
 @RequestMapping("/llm-config")

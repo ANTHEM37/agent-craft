@@ -19,7 +19,7 @@ import java.util.List;
  * LLM配置仓库实现类
  *
  * @author hb28301
- * @date 2025/10/11 15:39:31
+ * @since 2025/10/11 15:39:31
  */
 @Component
 @RequiredArgsConstructor

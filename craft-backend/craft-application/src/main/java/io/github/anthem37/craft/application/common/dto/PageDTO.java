@@ -8,7 +8,7 @@ import java.util.List;
  * 分页查询结果
  *
  * @author hb28301
- * @date 2025/10/11 21:15:37
+ * @since 2025/10/11 21:15:37
  */
 @Data
 public class PageDTO<T> {

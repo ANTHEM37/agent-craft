@@ -22,7 +22,7 @@ import java.util.List;
  * LLM配置服务实现类
  *
  * @author hb28301
- * @date 2025/10/11 16:58:26
+ * @since 2025/10/11 16:58:26
  */
 @Component
 public class LLMConfigService extends AbstractApplicationService implements ILLMConfigService {

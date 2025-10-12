@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author hb28301
- * @date 2025/10/11 16:44:04
+ * @since 2025/10/11 16:44:04
  */
 public interface ILLMConfigService {
 

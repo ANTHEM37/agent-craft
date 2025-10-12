@@ -6,7 +6,7 @@ import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 
 /**
  * @author hb28301
- * @date 2025/10/11 16:36:04
+ * @since 2025/10/11 16:36:04
  */
 public interface IChatModelFactory {
 

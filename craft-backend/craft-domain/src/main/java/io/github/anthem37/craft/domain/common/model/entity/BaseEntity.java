@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * 基础模型类，包含通用的数据库字段
  *
  * @author hb28301
- * @date 2025/10/11 15:03:08
+ * @since 2025/10/11 15:03:08
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

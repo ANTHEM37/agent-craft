@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author hb28301
- * @date 2025/10/11 17:14:03
+ * @since 2025/10/11 17:14:03
  */
 @Component
 @RequiredArgsConstructor

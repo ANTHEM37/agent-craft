@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 
 /**
  * @author hb28301
- * @date 2025/10/11 15:46:24
+ * @since 2025/10/11 15:46:24
  */
 @Mapper
 public interface ILLMConfigCommandConverter {

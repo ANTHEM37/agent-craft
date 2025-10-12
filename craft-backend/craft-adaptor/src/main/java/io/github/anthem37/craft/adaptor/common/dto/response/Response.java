@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.adaptor.controller.dto.response;
+package io.github.anthem37.craft.adaptor.common.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

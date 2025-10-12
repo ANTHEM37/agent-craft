@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author hb28301
- * @date 2025/10/11 16:04:00
+ * @since 2025/10/11 16:04:00
  */
 @Data
 public class UpdatedLLMConfigEvent implements IDomainEvent {

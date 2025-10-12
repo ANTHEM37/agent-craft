@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * 基础模型类，包含通用的数据库字段
  *
  * @author hb28301
- * @date 2025/10/9 16:43:54
+ * @since 2025/10/9 16:43:54
  */
 @Data
 @Accessors(chain = true)

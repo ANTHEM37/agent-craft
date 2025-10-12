@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  * 基础聚合根类，所有聚合根类都应继承自该类
  *
  * @author hb28301
- * @date 2025/10/11 14:51:25
+ * @since 2025/10/11 14:51:25
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

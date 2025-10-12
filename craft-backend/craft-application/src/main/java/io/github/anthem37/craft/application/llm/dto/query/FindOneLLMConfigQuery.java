@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
  * 查询单个LLM配置查询
  *
  * @author hb28301
- * @date 2025/10/11 17:10:17
+ * @since 2025/10/11 17:10:17
  */
 @Data
 @AllArgsConstructor

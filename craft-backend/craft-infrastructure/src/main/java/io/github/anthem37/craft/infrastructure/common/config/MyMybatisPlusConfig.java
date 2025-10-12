@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * Mybatis Plus 配置
  *
  * @author hb28301
- * @date 2025/10/11 16:32:11
+ * @since 2025/10/11 16:32:11
  */
 @Configuration
 @MapperScan("io.github.anthem37.craft.infrastructure.**.mapper")

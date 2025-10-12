@@ -13,7 +13,7 @@ import java.util.List;
  * 列表查询LLM配置
  *
  * @author hb28301
- * @date 2025/10/11 17:10:17
+ * @since 2025/10/11 17:10:17
  */
 @Data
 @AllArgsConstructor

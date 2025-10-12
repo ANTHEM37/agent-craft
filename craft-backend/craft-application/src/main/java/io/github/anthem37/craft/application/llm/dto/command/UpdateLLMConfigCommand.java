@@ -8,7 +8,7 @@ import io.github.anthem37.easy.ddd.common.cqrs.command.ICommand;
  * 更新LLM配置命令
  *
  * @author hb28301
- * @date 2025/10/11 17:07:21
+ * @since 2025/10/11 17:07:21
  */
 public class UpdateLLMConfigCommand extends LLMConfigDTO implements ICommand<Boolean> {
     @Override

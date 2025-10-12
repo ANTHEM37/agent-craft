@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * 删除LLM配置命令
  *
  * @author hb28301
- * @date 2025/10/11 17:07:21
+ * @since 2025/10/11 17:07:21
  */
 @Data
 @AllArgsConstructor
