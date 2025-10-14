@@ -8,7 +8,7 @@ import dev.langchain4j.model.chat.request.ResponseFormat;
 import dev.langchain4j.model.chat.request.ResponseFormatType;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
-import io.github.anthem37.craft.application.llm.factory.IChatModelFactory;
+import io.github.anthem37.craft.domain.llm.model.factory.IChatModelFactory;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
 import lombok.extern.slf4j.Slf4j;

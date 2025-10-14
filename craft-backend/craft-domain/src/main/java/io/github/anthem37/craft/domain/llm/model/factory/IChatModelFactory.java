@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.application.llm.factory;
+package io.github.anthem37.craft.domain.llm.model.factory;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.StreamingChatModel;
