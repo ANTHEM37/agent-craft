@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.memory.mybatis.po;
+package io.github.anthem37.craft.domain.memory.model.value;
 
 /**
  * @author hb28301

@@ -3,6 +3,7 @@ package io.github.anthem37.craft.infrastructure.memory.mybatis.po;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import dev.langchain4j.data.message.ChatMessageType;
+import io.github.anthem37.craft.domain.memory.model.value.ChatMessageStatus;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,12 @@ public class ChatMessagePO extends BasePO {
      */
     @TableField(value = "type", typeHandler = EnumTypeHandler.class)
     private ChatMessageType type;
+
+    /**
+     * 消息状态
+     */
+    @TableField(value = "status", typeHandler = EnumTypeHandler.class)
+    private ChatMessageStatus status;
 
     /**
      * 消息内容
