@@ -17,9 +17,4 @@ public enum ChatMemoryStoreType {
      * MySQL 聊天记忆存储
      */
     IN_MYSQL,
-
-    /**
-     * Redis 聊天记忆存储
-     */
-    IN_REDIS,
 }

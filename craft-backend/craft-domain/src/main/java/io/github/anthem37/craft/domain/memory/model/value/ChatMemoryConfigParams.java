@@ -61,35 +61,4 @@ public class ChatMemoryConfigParams {
         private ChatMemoryStoreType chatMemoryStoreType;
     }
 
-    /**
-     * 摘要型记忆参数
-     */
-    @EqualsAndHashCode(callSuper = true)
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Accessors(chain = true)
-    public static class SummaryBasedParams extends ChatMemoryConfigParams {
-
-        /**
-         * 摘要最大令牌数（可选，未提供时走默认）
-         */
-        private Integer summaryMaxTokens;
-
-        /**
-         * 每多少条消息触发一次摘要（可选，未提供时走默认）
-         */
-        private Integer summarizeEveryMessages;
-
-        /**
-         * 令牌计数估计器类型
-         */
-        private TokenCountEstimatorType tokenCountEstimatorType;
-
-        /**
-         * 聊天记忆存储类型
-         */
-        private ChatMemoryStoreType chatMemoryStoreType;
-    }
-
 }
