@@ -39,7 +39,7 @@ public class LLMConfigRepository implements ILLMConfigRepository {
 
         return new LambdaQueryChainWrapper<>(llmConfigMapper)
                 .like(StrUtil.isNotBlank(modelName), LLMConfigPO::getModelName, modelName)
-                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getConfigName, configName)
+                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getLlmConfigName, configName)
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
@@ -59,7 +59,7 @@ public class LLMConfigRepository implements ILLMConfigRepository {
     public PageDTO<LLMConfigDTO> pageByModelNameAndConfigName(long current, long size, String modelName, String configName) {
         Page<LLMConfigPO> page = new LambdaQueryChainWrapper<>(llmConfigMapper)
                 .like(StrUtil.isNotBlank(modelName), LLMConfigPO::getModelName, modelName)
-                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getConfigName, configName)
+                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getLlmConfigName, configName)
                 .orderByDesc(BasePO::getUpdatedAt)
                 .page(new Page<>(current, size));
 

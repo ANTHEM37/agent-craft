@@ -27,6 +27,12 @@ import java.util.Map;
 @Accessors(chain = true)
 public class ChatMemoryConfig extends BaseAggregateRoot {
 
+
+    /**
+     * 配置名称，用于标识不同的记忆配置
+     */
+    private String chatMemoryConfigName;
+
     /**
      * 记忆类型
      */
@@ -36,6 +42,11 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
      * 记忆参数
      */
     private Map<String, Object> params;
+
+    /**
+     * 记忆描述
+     */
+    private String description;
 
     /**
      * 解析记忆参数

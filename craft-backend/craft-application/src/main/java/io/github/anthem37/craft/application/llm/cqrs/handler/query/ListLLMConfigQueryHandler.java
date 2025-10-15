@@ -22,7 +22,7 @@ public class ListLLMConfigQueryHandler implements IQueryHandler<ListLLMConfigQue
     @Override
     public List<LLMConfigDTO> handle(ListLLMConfigQuery query) {
 
-        return llmConfigRepository.listByModelNameAndConfigName(query.getModelName(), query.getConfigName());
+        return llmConfigRepository.listByModelNameAndConfigName(query.getModelName(), query.getLlmConfigName());
     }
 
     @Override

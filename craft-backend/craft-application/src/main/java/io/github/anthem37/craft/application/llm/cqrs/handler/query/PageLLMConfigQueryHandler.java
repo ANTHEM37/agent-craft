@@ -21,7 +21,7 @@ public class PageLLMConfigQueryHandler implements IQueryHandler<PageLLMConfigQue
     @Override
     public PageDTO<LLMConfigDTO> handle(PageLLMConfigQuery query) {
 
-        return llmConfigRepository.pageByModelNameAndConfigName(query.getCurrent(), query.getSize(), query.getModelName(), query.getConfigName());
+        return llmConfigRepository.pageByModelNameAndConfigName(query.getCurrent(), query.getSize(), query.getModelName(), query.getLlmConfigName());
     }
 
     @Override
