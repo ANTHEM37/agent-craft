@@ -26,6 +26,12 @@ public class LLMConfigDTO {
     private Long id;
 
     /**
+     * 配置名称，用于标识不同的模型配置
+     */
+    @NotBlank(message = "配置名称不能为空")
+    private String configName;
+
+    /**
      * 自定义API基础URL，用于指定自定义的OpenAI API地址
      */
     @NotBlank(message = "API基础URL不能为空")
@@ -48,6 +54,12 @@ public class LLMConfigDTO {
      */
     @Valid
     private ExtraInfo extraInfo;
+
+    /**
+     * 模型描述，用于说明模型的功能和特性
+     */
+    @NotBlank(message = "模型描述不能为空")
+    private String description;
 
     /**
      * 创建时间

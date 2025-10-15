@@ -23,6 +23,12 @@ import lombok.experimental.Accessors;
 public class LLMConfigPO extends BasePO {
 
     /**
+     * 配置名称
+     */
+    @TableField(value = "config_name")
+    private String configName;
+
+    /**
      * 自定义API基础URL
      */
     @TableField(value = "base_url")
@@ -46,4 +52,10 @@ public class LLMConfigPO extends BasePO {
      */
     @TableField(value = "extra_info", typeHandler = JacksonTypeHandler.class)
     private ExtraInfo extraInfo;
+
+    /**
+     * 模型描述
+     */
+    @TableField(value = "description")
+    private String description;
 }

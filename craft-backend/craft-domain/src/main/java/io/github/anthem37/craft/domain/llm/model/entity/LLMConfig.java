@@ -26,6 +26,11 @@ import lombok.extern.slf4j.Slf4j;
 public class LLMConfig extends BaseAggregateRoot {
 
     /**
+     * 配置名称，用于标识不同的模型配置
+     */
+    private String configName;
+
+    /**
      * 自定义API基础URL，用于指定自定义的OpenAI API地址
      */
     private String baseUrl;
@@ -45,6 +50,11 @@ public class LLMConfig extends BaseAggregateRoot {
      */
     @Valid
     private ExtraInfo extraInfo;
+
+    /**
+     * 模型描述，用于说明模型的功能和特性
+     */
+    private String description;
 
     /**
      * 标记为已创建，触发 CreatedLLMConfigEvent 事件

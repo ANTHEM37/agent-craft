@@ -22,6 +22,11 @@ import java.util.List;
 public class ListLLMConfigQuery implements IQuery<List<LLMConfigDTO>> {
 
     /**
+     * 配置名称，用于筛选指定配置的模型
+     */
+    private String configName;
+
+    /**
      * 模型名称，用于筛选指定模型的配置
      */
     private String modelName;

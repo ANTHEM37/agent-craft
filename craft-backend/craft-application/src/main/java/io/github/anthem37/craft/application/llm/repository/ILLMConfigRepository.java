@@ -25,10 +25,11 @@ public interface ILLMConfigRepository {
     /**
      * 根据模型名称查询LLM配置列表
      *
-     * @param modelName 模型名称
+     * @param modelName  模型名称
+     * @param configName 配置名称
      * @return LLM配置列表
      */
-    List<LLMConfigDTO> listByModelName(String modelName);
+    List<LLMConfigDTO> listByModelNameAndConfigName(String modelName, String configName);
 
     /**
      * 根据模型名称统计LLM配置数量
@@ -41,10 +42,11 @@ public interface ILLMConfigRepository {
     /**
      * 分页查询LLM配置
      *
-     * @param current   当前页码
-     * @param size      每页数量
-     * @param modelName 模型名称
+     * @param current    当前页码
+     * @param size       每页数量
+     * @param modelName  模型名称
+     * @param configName 配置名称
      * @return LLM配置分页结果
      */
-    PageDTO<LLMConfigDTO> pageByModelName(long current, long size, String modelName);
+    PageDTO<LLMConfigDTO> pageByModelNameAndConfigName(long current, long size, String modelName, String configName);
 }

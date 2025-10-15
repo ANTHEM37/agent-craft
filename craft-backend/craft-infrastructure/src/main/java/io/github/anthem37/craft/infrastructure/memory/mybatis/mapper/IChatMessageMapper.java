@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.memory.myabtis.Mapper;
+package io.github.anthem37.craft.infrastructure.memory.mybatis.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMessagePO;

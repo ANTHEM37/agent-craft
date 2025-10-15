@@ -2,7 +2,7 @@ package io.github.anthem37.craft.infrastructure.memory.domain.store.impl;
 
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.store.memory.chat.ChatMemoryStore;
-import io.github.anthem37.craft.infrastructure.memory.myabtis.Mapper.IChatMessageMapper;
+import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMessageMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class MysqlChatMemoryStore implements ChatMemoryStore {
 
     @Override
     public List<ChatMessage> getMessages(Object memoryId) {
-      
+
         return List.of();
     }
 
