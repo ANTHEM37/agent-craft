@@ -38,7 +38,7 @@ public class PageLLMConfigQuery implements IQuery<PageDTO<LLMConfigDTO>> {
     /**
      * 配置名称，用于筛选指定配置的模型
      */
-    private String configName;
+    private String llmConfigName;
 
     /**
      * 模型名称，用于筛选指定模型的配置

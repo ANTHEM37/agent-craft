@@ -28,7 +28,7 @@ public class LLMConfig extends BaseAggregateRoot {
     /**
      * 配置名称，用于标识不同的模型配置
      */
-    private String configName;
+    private String llmConfigName;
 
     /**
      * 自定义API基础URL，用于指定自定义的OpenAI API地址

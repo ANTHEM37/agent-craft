@@ -25,8 +25,8 @@ public class LLMConfigPO extends BasePO {
     /**
      * 配置名称
      */
-    @TableField(value = "config_name")
-    private String configName;
+    @TableField(value = "llm_config_name")
+    private String llmConfigName;
 
     /**
      * 自定义API基础URL
