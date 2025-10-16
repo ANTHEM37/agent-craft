@@ -4,7 +4,7 @@ package io.github.anthem37.craft.domain.memory.model.value;
  * 聊天记忆存储类型
  *
  * @author hb28301
- * @date 2025/10/14 10:49:25
+ * @since 2025/10/14 10:49:25
  */
 public enum ChatMemoryStoreType {
 

@@ -5,7 +5,7 @@ import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryStoreType;
 
 /**
  * @author hb28301
- * @date 2025/10/14 10:43:06
+ * @since 2025/10/14 10:43:06
  */
 public interface IChatMemoryStoreFactory {
 

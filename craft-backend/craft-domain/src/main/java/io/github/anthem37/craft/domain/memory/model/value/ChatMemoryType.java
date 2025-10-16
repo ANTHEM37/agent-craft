@@ -7,7 +7,7 @@ import lombok.Getter;
  * 记忆类型枚举类
  *
  * @author hb28301
- * @date 2025/10/14 10:21:02
+ * @since 2025/10/14 10:21:02
  */
 @Getter
 @AllArgsConstructor

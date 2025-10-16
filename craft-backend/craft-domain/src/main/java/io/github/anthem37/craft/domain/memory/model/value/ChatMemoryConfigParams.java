@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
  * 聊天记忆配置参数
  *
  * @author hb28301
- * @date 2025/10/14 10:45:26
+ * @since 2025/10/14 10:45:26
  */
 @Data
 @AllArgsConstructor
@@ -51,14 +51,14 @@ public class ChatMemoryConfigParams {
     public static class TokenWindowParams extends ChatMemoryConfigParams {
 
         /**
-         * 最大令牌数
-         */
-        private Integer maxTokens;
-
-        /**
          * LLM配置ID
          */
         private Long llmConfigId;
+
+        /**
+         * 最大令牌数
+         */
+        private Integer maxTokens;
     }
 
 }

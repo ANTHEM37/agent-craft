@@ -8,7 +8,7 @@ import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
-import io.github.anthem37.craft.infrastructure.llm.converter.ILLMConfigDOConverter;
+import io.github.anthem37.craft.infrastructure.llm.converter.ILLMConfigPOConverter;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.po.LLMConfigPO;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class LLMConfigRepository implements ILLMConfigRepository {
     public LLMConfigDTO findById(Long id) {
         LLMConfigPO po = new LambdaQueryChainWrapper<>(llmConfigMapper).eq(LLMConfigPO::getId, id).one();
 
-        return ILLMConfigDOConverter.INSTANCE.toDTO(po);
+        return ILLMConfigPOConverter.INSTANCE.toDTO(po);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LLMConfigRepository implements ILLMConfigRepository {
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
-                .map(ILLMConfigDOConverter.INSTANCE::toDTO)
+                .map(ILLMConfigPOConverter.INSTANCE::toDTO)
                 .toList();
     }
 
@@ -69,7 +69,7 @@ public class LLMConfigRepository implements ILLMConfigRepository {
                 .page(new Page<>(current, size));
 
         return PageDTO.of(page.getCurrent(), page.getSize(), page.getTotal(),
-                page.getRecords().stream().map(ILLMConfigDOConverter.INSTANCE::toDTO).toList());
+                page.getRecords().stream().map(ILLMConfigPOConverter.INSTANCE::toDTO).toList());
     }
 
 }

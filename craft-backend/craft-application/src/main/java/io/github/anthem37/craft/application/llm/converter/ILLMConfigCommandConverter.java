@@ -15,8 +15,8 @@ public interface ILLMConfigCommandConverter {
 
     ILLMConfigCommandConverter INSTANCE = Mappers.getMapper(ILLMConfigCommandConverter.class);
 
-    LLMConfig toDomain(CreateLLMConfigCommand po);
+    LLMConfig toDomain(CreateLLMConfigCommand command);
 
-    LLMConfig toDomain(UpdateLLMConfigCommand po);
+    LLMConfig toDomain(UpdateLLMConfigCommand command);
 
 }

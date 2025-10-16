@@ -13,14 +13,14 @@ import lombok.experimental.Accessors;
 
 /**
  * @author hb28301
- * @date 2025/10/14 14:49:31
+ * @since 2025/10/14 14:49:31
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-@TableName("tb_chat_message")
+@TableName("tb_chat_memory")
 public class ChatMemoryPO extends BasePO {
 
     /**

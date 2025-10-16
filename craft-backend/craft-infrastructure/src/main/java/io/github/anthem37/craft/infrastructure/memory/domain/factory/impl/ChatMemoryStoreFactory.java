@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author hb28301
- * @date 2025/10/16 13:45:00
+ * @since 2025/10/16 13:45:00
  */
 @Component
 @RequiredArgsConstructor
@@ -21,7 +21,7 @@ public class ChatMemoryStoreFactory implements IChatMemoryStoreFactory {
 
     @Override
     public ChatMemoryStore createChatMemoryStore(ChatMemoryStoreType chatMemoryStoreType) {
-        
+
         return switch (chatMemoryStoreType) {
             case IN_MEMORY -> new InMemoryChatMemoryStore();
             case IN_DB -> new DBChatMemoryStore(chatMessageMapper);

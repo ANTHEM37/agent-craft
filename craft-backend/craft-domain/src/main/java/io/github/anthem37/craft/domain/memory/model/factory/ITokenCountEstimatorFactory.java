@@ -4,7 +4,7 @@ import dev.langchain4j.model.TokenCountEstimator;
 
 /**
  * @author hb28301
- * @date 2025/10/16 13:50:42
+ * @since 2025/10/16 13:50:42
  */
 public interface ITokenCountEstimatorFactory {
 

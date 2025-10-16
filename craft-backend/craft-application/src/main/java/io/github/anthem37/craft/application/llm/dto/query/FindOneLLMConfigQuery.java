@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.application.llm.dto.query;
 
+import cn.hutool.core.lang.Assert;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQuery;
 import lombok.AllArgsConstructor;
@@ -23,4 +24,10 @@ public class FindOneLLMConfigQuery implements IQuery<LLMConfigDTO> {
      * 要查询的LLM配置ID
      */
     private Long id;
+
+    @Override
+    public boolean isValid() {
+        Assert.notNull(id, "LLM配置ID不能为空");
+        return true;
+    }
 }

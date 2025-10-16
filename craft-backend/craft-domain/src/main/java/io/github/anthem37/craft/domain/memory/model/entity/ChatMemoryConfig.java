@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
  * 聊天内存配置实体类
  *
  * @author hb28301
- * @date 2025/10/14 10:20:06
+ * @since 2025/10/14 10:20:06
  */
 @Slf4j
 @EqualsAndHashCode(callSuper = true)
@@ -25,11 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @Accessors(chain = true)
 public class ChatMemoryConfig extends BaseAggregateRoot {
 
-
     /**
      * 配置名称，用于标识不同的记忆配置
      */
-    private String chatMemoryConfigName;
+    private String configName;
 
     /**
      * 记忆类型

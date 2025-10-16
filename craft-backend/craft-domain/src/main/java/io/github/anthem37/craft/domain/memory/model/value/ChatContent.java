@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 聊天内容
+ *
  * @author hb28301
- * @description: 聊天内容
- * @author: hb28301
- * @date 2025/10/15 17:49:50
+ * @since 2025/10/15 17:49:50
  */
 @Slf4j
 @Data
@@ -31,6 +31,18 @@ public class ChatContent {
      */
     private List<ChatMessageData> messages;
 
+    /**
+     * 转换为LangChain4j的ChatMessage列表
+     *
+     * @return LangChain4j的ChatMessage列表
+     */
+
+    public List<ChatMessage> toLangChain4jChatMessages() {
+        if (CollectionUtil.isEmpty(messages)) {
+            return new ArrayList<>();
+        }
+        return messages.stream().map(ChatMessageData::toLangChain4jChatMessage).toList();
+    }
 
     @Slf4j
     @Data
@@ -58,19 +70,6 @@ public class ChatContent {
 
             return JSONUtil.toBean(content, type.messageClass());
         }
-    }
-
-    /**
-     * 转换为LangChain4j的ChatMessage列表
-     *
-     * @return LangChain4j的ChatMessage列表
-     */
-
-    public List<ChatMessage> toLangChain4jChatMessages() {
-        if (CollectionUtil.isEmpty(messages)) {
-            return new ArrayList<>();
-        }
-        return messages.stream().map(ChatMessageData::toLangChain4jChatMessage).toList();
     }
 
 }
