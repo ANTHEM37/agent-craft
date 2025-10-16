@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Map;
-
 /**
  * 聊天内存配置实体类
  *
@@ -41,7 +39,7 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
     /**
      * 记忆参数
      */
-    private Map<String, Object> params;
+    private ChatMemoryConfigParams params;
 
     /**
      * 记忆描述

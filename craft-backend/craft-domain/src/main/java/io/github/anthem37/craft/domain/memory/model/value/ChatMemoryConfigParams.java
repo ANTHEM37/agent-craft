@@ -12,7 +12,16 @@ import lombok.experimental.Accessors;
  * @author hb28301
  * @date 2025/10/14 10:45:26
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
 public class ChatMemoryConfigParams {
+
+    /**
+     * 聊天记忆存储类型
+     */
+    private ChatMemoryStoreType chatMemoryStoreType;
 
     /**
      * 消息窗口参数
@@ -29,10 +38,6 @@ public class ChatMemoryConfigParams {
          */
         private Integer maxMessages;
 
-        /**
-         * 聊天记忆存储类型
-         */
-        private ChatMemoryStoreType chatMemoryStoreType;
     }
 
     /**
@@ -51,14 +56,9 @@ public class ChatMemoryConfigParams {
         private Integer maxTokens;
 
         /**
-         * 令牌计数估计器类型
+         * LLM配置ID
          */
-        private TokenCountEstimatorType tokenCountEstimatorType;
-
-        /**
-         * 聊天记忆存储类型
-         */
-        private ChatMemoryStoreType chatMemoryStoreType;
+        private Long llmConfigId;
     }
 
 }

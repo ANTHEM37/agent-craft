@@ -19,7 +19,7 @@ public class CountLLMConfigQueryHandler implements IQueryHandler<CountLLMConfigQ
     @Override
     public Long handle(CountLLMConfigQuery query) {
 
-        return llmConfigRepository.countByModelName(query.getModelName());
+        return llmConfigRepository.countByModelNameAndConfigNameAndProvider(query.getModelName(), query.getConfigName(), query.getProvider());
     }
 
     @Override

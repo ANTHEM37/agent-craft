@@ -2,6 +2,7 @@ package io.github.anthem37.craft.application.llm.dto.query;
 
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQuery;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -38,7 +39,12 @@ public class PageLLMConfigQuery implements IQuery<PageDTO<LLMConfigDTO>> {
     /**
      * 配置名称，用于筛选指定配置的模型
      */
-    private String llmConfigName;
+    private String configName;
+
+    /**
+     * 模型提供商（比如openAI、dashscope等）
+     */
+    private LLMProvider provider;
 
     /**
      * 模型名称，用于筛选指定模型的配置

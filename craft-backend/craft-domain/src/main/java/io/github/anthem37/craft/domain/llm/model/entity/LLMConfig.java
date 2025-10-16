@@ -5,6 +5,7 @@ import io.github.anthem37.craft.domain.llm.event.CreatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.DeletedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.UpdatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,7 +29,12 @@ public class LLMConfig extends BaseAggregateRoot {
     /**
      * 配置名称，用于标识不同的模型配置
      */
-    private String llmConfigName;
+    private String configName;
+
+    /**
+     * 模型提供商（比如openAI、dashscope等）
+     */
+    private LLMProvider provider;
 
     /**
      * 自定义API基础URL，用于指定自定义的OpenAI API地址

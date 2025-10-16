@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import io.github.anthem37.craft.infrastructure.llm.converter.ILLMConfigDOConverter;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
@@ -35,11 +36,12 @@ public class LLMConfigRepository implements ILLMConfigRepository {
     }
 
     @Override
-    public List<LLMConfigDTO> listByModelNameAndConfigName(String modelName, String configName) {
+    public List<LLMConfigDTO> listByModelNameAndConfigNameAndProvider(String modelName, String configName, LLMProvider provider) {
 
         return new LambdaQueryChainWrapper<>(llmConfigMapper)
                 .like(StrUtil.isNotBlank(modelName), LLMConfigPO::getModelName, modelName)
-                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getLlmConfigName, configName)
+                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getConfigName, configName)
+                .eq(provider != null, LLMConfigPO::getProvider, provider)
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
@@ -48,18 +50,21 @@ public class LLMConfigRepository implements ILLMConfigRepository {
     }
 
     @Override
-    public Long countByModelName(String modelName) {
+    public Long countByModelNameAndConfigNameAndProvider(String modelName, String configName, LLMProvider provider) {
 
         return new LambdaQueryChainWrapper<>(llmConfigMapper)
                 .like(StrUtil.isNotBlank(modelName), LLMConfigPO::getModelName, modelName)
+                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getConfigName, configName)
+                .eq(provider != null, LLMConfigPO::getProvider, provider)
                 .count();
     }
 
     @Override
-    public PageDTO<LLMConfigDTO> pageByModelNameAndConfigName(long current, long size, String modelName, String configName) {
+    public PageDTO<LLMConfigDTO> pageByModelNameAndConfigNameAndProvider(long current, long size, String modelName, String configName, LLMProvider provider) {
         Page<LLMConfigPO> page = new LambdaQueryChainWrapper<>(llmConfigMapper)
                 .like(StrUtil.isNotBlank(modelName), LLMConfigPO::getModelName, modelName)
-                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getLlmConfigName, configName)
+                .like(StrUtil.isNotBlank(configName), LLMConfigPO::getConfigName, configName)
+                .eq(provider != null, LLMConfigPO::getProvider, provider)
                 .orderByDesc(BasePO::getUpdatedAt)
                 .page(new Page<>(current, size));
 

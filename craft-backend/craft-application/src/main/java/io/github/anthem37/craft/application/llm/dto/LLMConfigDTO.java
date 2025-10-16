@@ -1,6 +1,7 @@
 package io.github.anthem37.craft.application.llm.dto;
 
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,13 @@ public class LLMConfigDTO {
      * 配置名称，用于标识不同的模型配置
      */
     @NotBlank(message = "配置名称不能为空")
-    private String llmConfigName;
+    private String configName;
+
+    /**
+     * 模型提供商（比如openAI、dashscope等）
+     */
+    @NotBlank(message = "模型提供商不能为空")
+    private LLMProvider provider;
 
     /**
      * 自定义API基础URL，用于指定自定义的OpenAI API地址

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,8 +26,14 @@ public class LLMConfigPO extends BasePO {
     /**
      * 配置名称
      */
-    @TableField(value = "llm_config_name")
-    private String llmConfigName;
+    @TableField(value = "config_name")
+    private String configName;
+
+    /**
+     * 模型提供商（比如openAI、dashscope等）
+     */
+    @TableField(value = "provider")
+    private LLMProvider provider;
 
     /**
      * 自定义API基础URL

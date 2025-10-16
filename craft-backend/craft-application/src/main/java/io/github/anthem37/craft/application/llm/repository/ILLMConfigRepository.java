@@ -3,6 +3,7 @@ package io.github.anthem37.craft.application.llm.repository;
 
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 
 import java.util.List;
 
@@ -27,9 +28,10 @@ public interface ILLMConfigRepository {
      *
      * @param modelName  模型名称
      * @param configName 配置名称
+     * @param provider   模型提供商
      * @return LLM配置列表
      */
-    List<LLMConfigDTO> listByModelNameAndConfigName(String modelName, String configName);
+    List<LLMConfigDTO> listByModelNameAndConfigNameAndProvider(String modelName, String configName, LLMProvider provider);
 
     /**
      * 根据模型名称统计LLM配置数量
@@ -37,7 +39,7 @@ public interface ILLMConfigRepository {
      * @param modelName 模型名称
      * @return LLM配置数量
      */
-    Long countByModelName(String modelName);
+    Long countByModelNameAndConfigNameAndProvider(String modelName, String configName, LLMProvider provider);
 
     /**
      * 分页查询LLM配置
@@ -46,7 +48,8 @@ public interface ILLMConfigRepository {
      * @param size       每页数量
      * @param modelName  模型名称
      * @param configName 配置名称
+     * @param provider   模型提供商
      * @return LLM配置分页结果
      */
-    PageDTO<LLMConfigDTO> pageByModelNameAndConfigName(long current, long size, String modelName, String configName);
+    PageDTO<LLMConfigDTO> pageByModelNameAndConfigNameAndProvider(long current, long size, String modelName, String configName, LLMProvider provider);
 }
