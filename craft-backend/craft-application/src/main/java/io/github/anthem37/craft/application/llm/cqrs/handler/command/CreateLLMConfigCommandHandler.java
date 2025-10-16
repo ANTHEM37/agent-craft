@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.application.llm.cqrs.handler.command;
 
-import io.github.anthem37.craft.application.llm.converter.ILLMConfigCommandConverter;
+import io.github.anthem37.craft.application.llm.converter.LLMConfigCommandConverter;
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
 import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;
@@ -21,7 +21,7 @@ public class CreateLLMConfigCommandHandler implements ICommandHandler<CreateLLMC
 
     @Override
     public Boolean handle(CreateLLMConfigCommand command) {
-        llmConfigDomainRepository.save(ILLMConfigCommandConverter.INSTANCE.toDomain(command));
+        llmConfigDomainRepository.save(LLMConfigCommandConverter.INSTANCE.toDomain(command));
         return true;
     }
 

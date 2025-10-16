@@ -9,7 +9,7 @@ import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.respository.IChatMemoryConfigRepository;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
-import io.github.anthem37.craft.infrastructure.memory.converter.IChatMemoryConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class ChatMemoryConfigRepository implements IChatMemoryConfigRepository {
     @Override
     public ChatMemoryConfigDTO findById(Long id) {
 
-        return IChatMemoryConfigPOConverter.INSTANCE.toDTO(chatMemoryConfigMapper.selectById(id));
+        return ChatMemoryConfigPOConverter.INSTANCE.toDTO(chatMemoryConfigMapper.selectById(id));
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ChatMemoryConfigRepository implements IChatMemoryConfigRepository {
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
-                .map(IChatMemoryConfigPOConverter.INSTANCE::toDTO)
+                .map(ChatMemoryConfigPOConverter.INSTANCE::toDTO)
                 .toList();
     }
 
@@ -64,7 +64,7 @@ public class ChatMemoryConfigRepository implements IChatMemoryConfigRepository {
                 .page(new Page<>(current, size));
 
         return PageDTO.of(page.getCurrent(), page.getSize(), page.getTotal(),
-                page.getRecords().stream().map(IChatMemoryConfigPOConverter.INSTANCE::toDTO).toList());
+                page.getRecords().stream().map(ChatMemoryConfigPOConverter.INSTANCE::toDTO).toList());
     }
 
 }

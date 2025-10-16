@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
  * @since 2025/10/11 15:46:24
  */
 @Mapper
-public interface IChatMemoryConfigPOConverter {
+public interface ChatMemoryConfigPOConverter {
 
-    IChatMemoryConfigPOConverter INSTANCE = Mappers.getMapper(IChatMemoryConfigPOConverter.class);
+    ChatMemoryConfigPOConverter INSTANCE = Mappers.getMapper(ChatMemoryConfigPOConverter.class);
 
     ChatMemoryConfig toDomain(ChatMemoryConfigPO po);
 

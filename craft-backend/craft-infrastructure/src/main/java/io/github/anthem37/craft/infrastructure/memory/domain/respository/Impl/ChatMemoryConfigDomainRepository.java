@@ -2,7 +2,7 @@ package io.github.anthem37.craft.infrastructure.memory.domain.respository.Impl;
 
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
-import io.github.anthem37.craft.infrastructure.memory.converter.IChatMemoryConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
 import lombok.RequiredArgsConstructor;
@@ -22,12 +22,12 @@ public class ChatMemoryConfigDomainRepository implements IChatMemoryConfigDomain
 
     @Override
     public Optional<ChatMemoryConfig> findById(Long id) {
-        return Optional.ofNullable(chatMemoryConfigMapper.selectById(id)).map(IChatMemoryConfigPOConverter.INSTANCE::toDomain);
+        return Optional.ofNullable(chatMemoryConfigMapper.selectById(id)).map(ChatMemoryConfigPOConverter.INSTANCE::toDomain);
     }
 
     @Override
     public void save(ChatMemoryConfig chatMemoryConfig) {
-        ChatMemoryConfigPO po = IChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
+        ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.insert(po);
         chatMemoryConfig.setId(po.getId());
         chatMemoryConfig.markAsCreated();
@@ -35,7 +35,7 @@ public class ChatMemoryConfigDomainRepository implements IChatMemoryConfigDomain
 
     @Override
     public void update(ChatMemoryConfig chatMemoryConfig) {
-        ChatMemoryConfigPO po = IChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
+        ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.updateById(po);
         chatMemoryConfig.markAsUpdated();
     }

@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
  * @since 2025/10/11 15:46:24
  */
 @Mapper
-public interface IChatMemoryConfigCommandConverter {
+public interface ChatMemoryConfigCommandConverter {
 
-    IChatMemoryConfigCommandConverter INSTANCE = Mappers.getMapper(IChatMemoryConfigCommandConverter.class);
+    ChatMemoryConfigCommandConverter INSTANCE = Mappers.getMapper(ChatMemoryConfigCommandConverter.class);
 
 
     ChatMemoryConfig toDomain(CreateChatMemoryConfigCommand command);

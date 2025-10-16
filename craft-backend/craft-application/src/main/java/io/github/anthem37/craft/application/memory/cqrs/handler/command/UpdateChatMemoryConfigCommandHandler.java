@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.application.memory.cqrs.handler.command;
 
-import io.github.anthem37.craft.application.memory.converter.IChatMemoryConfigCommandConverter;
+import io.github.anthem37.craft.application.memory.converter.ChatMemoryConfigCommandConverter;
 import io.github.anthem37.craft.application.memory.dto.command.UpdateChatMemoryConfigCommand;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
@@ -20,7 +20,7 @@ public class UpdateChatMemoryConfigCommandHandler implements ICommandHandler<Upd
 
     @Override
     public Boolean handle(UpdateChatMemoryConfigCommand command) {
-        ChatMemoryConfig ChatMemoryConfig = IChatMemoryConfigCommandConverter.INSTANCE.toDomain(command);
+        ChatMemoryConfig ChatMemoryConfig = ChatMemoryConfigCommandConverter.INSTANCE.toDomain(command);
         ChatMemoryConfigDomainRepository.update(ChatMemoryConfig);
         return true;
     }

@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.application.llm.cqrs.handler.command;
 
-import io.github.anthem37.craft.application.llm.converter.ILLMConfigCommandConverter;
+import io.github.anthem37.craft.application.llm.converter.LLMConfigCommandConverter;
 import io.github.anthem37.craft.application.llm.dto.command.UpdateLLMConfigCommand;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
@@ -20,7 +20,7 @@ public class UpdateLLMConfigCommandHandler implements ICommandHandler<UpdateLLMC
 
     @Override
     public Boolean handle(UpdateLLMConfigCommand command) {
-        LLMConfig llmConfig = ILLMConfigCommandConverter.INSTANCE.toDomain(command);
+        LLMConfig llmConfig = LLMConfigCommandConverter.INSTANCE.toDomain(command);
         llmConfigDomainRepository.update(llmConfig);
         return true;
     }

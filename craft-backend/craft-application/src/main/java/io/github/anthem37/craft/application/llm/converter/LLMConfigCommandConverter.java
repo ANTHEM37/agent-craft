@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
  * @since 2025/10/11 15:46:24
  */
 @Mapper
-public interface ILLMConfigCommandConverter {
+public interface LLMConfigCommandConverter {
 
-    ILLMConfigCommandConverter INSTANCE = Mappers.getMapper(ILLMConfigCommandConverter.class);
+    LLMConfigCommandConverter INSTANCE = Mappers.getMapper(LLMConfigCommandConverter.class);
 
     LLMConfig toDomain(CreateLLMConfigCommand command);
 
