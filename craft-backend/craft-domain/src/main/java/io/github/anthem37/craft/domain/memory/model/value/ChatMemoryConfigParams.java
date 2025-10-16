@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.domain.memory.model.value;
 
+import io.github.anthem37.easy.ddd.domain.model.IValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ChatMemoryConfigParams {
+public class ChatMemoryConfigParams implements IValueObject {
 
     /**
      * 聊天记忆存储类型

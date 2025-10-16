@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Primary
 @Component
-public class OpenAIIChatModelFactory implements IChatModelFactory {
+public class ChatModelFactory implements IChatModelFactory {
 
     @Override
     public ChatModel createChatModel(LLMConfig llmConfig) {

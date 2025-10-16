@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.domain.memory.model.value;
 
+import io.github.anthem37.easy.ddd.domain.model.IValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,7 +12,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum ChatMemoryType {
+public enum ChatMemoryType implements IValueObject {
 
     /**
      * 消息窗口记忆类型
