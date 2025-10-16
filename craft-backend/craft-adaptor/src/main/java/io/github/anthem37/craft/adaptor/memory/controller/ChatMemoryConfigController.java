@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2025/10/11 17:46:01
  */
 @RestController
-@RequestMapping("/llm-config")
+@RequestMapping("/chat-memory-config")
 @RequiredArgsConstructor
 public class ChatMemoryConfigController {
 

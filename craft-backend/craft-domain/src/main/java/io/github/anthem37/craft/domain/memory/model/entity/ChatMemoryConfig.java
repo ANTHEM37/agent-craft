@@ -2,6 +2,9 @@ package io.github.anthem37.craft.domain.memory.model.entity;
 
 import cn.hutool.json.JSONUtil;
 import io.github.anthem37.craft.domain.common.model.entity.BaseAggregateRoot;
+import io.github.anthem37.craft.domain.memory.event.CreatedChatMemoryConfigEvent;
+import io.github.anthem37.craft.domain.memory.event.DeletedChatMemoryConfigEvent;
+import io.github.anthem37.craft.domain.memory.event.UpdatedChatMemoryConfigEvent;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryConfigParams;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import lombok.AllArgsConstructor;
@@ -54,5 +57,26 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
     public <T extends ChatMemoryConfigParams> T parseParams(Class<T> clazz) {
 
         return JSONUtil.toBean(JSONUtil.toJsonStr(params), clazz);
+    }
+
+    /**
+     * 标记为已创建，触发 CreatedChatMemoryConfigEvent 事件
+     */
+    public void markAsCreated() {
+        addDomainEvent(new CreatedChatMemoryConfigEvent(this));
+    }
+
+    /**
+     * 标记为已更新，触发 UpdatedChatMemoryConfigEvent 事件
+     */
+    public void markAsUpdated() {
+        addDomainEvent(new UpdatedChatMemoryConfigEvent(this));
+    }
+
+    /**
+     * 标记为已删除，触发 DeletedChatMemoryConfigEvent 事件
+     */
+    public void markAsDeleted() {
+        addDomainEvent(new DeletedChatMemoryConfigEvent(this));
     }
 }
