@@ -41,29 +41,24 @@ public class ChatMemoryFactory implements IChatMemoryFactory {
         ChatMemoryStoreType chatMemoryStoreType = params.getChatMemoryStoreType();
         ChatMemoryStore chatMemoryStore = chatMemoryStoreFactory.createChatMemoryStore(chatMemoryStoreType);
         switch (chatMemoryType) {
-            case MESSAGE_WINDOW:
+            case MESSAGE_WINDOW: {
                 ChatMemoryConfigParams.MessageWindowParams messageWindowParams = memoryConfig.parseParams(ChatMemoryConfigParams.MessageWindowParams.class);
                 Integer maxMessages = messageWindowParams.getMaxMessages();
 
-                return MessageWindowChatMemory.builder()
-                        .id(memoryId)
-                        .maxMessages(maxMessages)
-                        .chatMemoryStore(chatMemoryStore)
-                        .build();
-            case TOKEN_WINDOW:
+                return MessageWindowChatMemory.builder().id(memoryId).maxMessages(maxMessages).chatMemoryStore(chatMemoryStore).build();
+            }
+
+            case TOKEN_WINDOW: {
                 ChatMemoryConfigParams.TokenWindowParams tokenWindowParams = memoryConfig.parseParams(ChatMemoryConfigParams.TokenWindowParams.class);
                 Integer maxTokens = tokenWindowParams.getMaxTokens();
                 Long llmConfigId = tokenWindowParams.getLlmConfigId();
 
-                return TokenWindowChatMemory.builder()
-                        .id(memoryId)
-                        .maxTokens(maxTokens, tokenCountEstimatorFactory.createTokenCountEstimator(llmConfigId))
-                        .chatMemoryStore(chatMemoryStore)
-                        .build();
-            default:
-                throw new IllegalArgumentException("Unknown chat memory type: " + chatMemoryType);
+                return TokenWindowChatMemory.builder().id(memoryId).maxTokens(maxTokens, tokenCountEstimatorFactory.createTokenCountEstimator(llmConfigId)).chatMemoryStore(chatMemoryStore).build();
+            }
+            default: {
+                throw new IllegalArgumentException("未知聊天记忆类型: " + chatMemoryType);
+            }
         }
-
     }
 
 }
