@@ -4,13 +4,10 @@ import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
-import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
-import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigRefPO;
 import io.github.anthem37.easy.ddd.infrastructure.repository.AbstractDomainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -23,7 +20,6 @@ import java.util.Optional;
 public class ChatMemoryConfigDomainRepository extends AbstractDomainRepository<ChatMemoryConfig, Long> implements IChatMemoryConfigDomainRepository {
 
     private final IChatMemoryConfigMapper chatMemoryConfigMapper;
-    private final IChatMemoryConfigRefMapper chatMemoryConfigRefMapper;
 
     @Override
     protected Optional<ChatMemoryConfig> doFindById(Long id) {
@@ -50,13 +46,5 @@ public class ChatMemoryConfigDomainRepository extends AbstractDomainRepository<C
         chatMemoryConfigMapper.deleteById(chatMemoryConfig.getId());
         chatMemoryConfig.markAsDeleted();
     }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void bindMemory(ChatMemoryConfig chatMemoryConfig, Long memoryId) {
-        chatMemoryConfigRefMapper.insert(new ChatMemoryConfigRefPO().setConfigId(chatMemoryConfig.getId()).setMemoryId(memoryId));
-        chatMemoryConfig.markAsBindMemory(memoryId);
-        save(chatMemoryConfig);
-    }
-
+    
 }

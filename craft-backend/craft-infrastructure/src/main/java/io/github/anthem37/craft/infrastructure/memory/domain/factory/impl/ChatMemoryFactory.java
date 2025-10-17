@@ -13,7 +13,7 @@ import io.github.anthem37.craft.domain.memory.model.factory.ITokenCountEstimator
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryConfigParams;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryStoreType;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
-import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
+import io.github.anthem37.craft.domain.memory.service.IChatMemoryBindingDomainService;
 import io.github.anthem37.craft.infrastructure.memory.domain.memory.impl.SummaryWindowChatMemory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -31,13 +31,13 @@ public class ChatMemoryFactory implements IChatMemoryFactory {
     private final ITokenCountEstimatorFactory tokenCountEstimatorFactory;
     private final IChatModelFactory chatModelFactory;
 
-    private final IChatMemoryConfigDomainRepository chatMemoryConfigDomainRepository;
+    private final IChatMemoryBindingDomainService chatMemoryBindingDomainService;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ChatMemory createChatMemory(ChatMemoryConfig memoryConfig) {
         long memoryId = IdUtil.getSnowflake().nextId();
-        chatMemoryConfigDomainRepository.bindMemory(memoryConfig, memoryId);
+        chatMemoryBindingDomainService.bindMemoryToConfig(memoryConfig, memoryId);
         ChatMemoryType chatMemoryType = memoryConfig.getChatMemoryType();
         ChatMemoryConfigParams params = memoryConfig.getParams();
         ChatMemoryStoreType chatMemoryStoreType = params.getChatMemoryStoreType();

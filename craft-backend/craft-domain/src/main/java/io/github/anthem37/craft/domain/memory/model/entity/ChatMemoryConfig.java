@@ -2,10 +2,7 @@ package io.github.anthem37.craft.domain.memory.model.entity;
 
 import cn.hutool.json.JSONUtil;
 import io.github.anthem37.craft.domain.common.model.entity.BaseAggregateRoot;
-import io.github.anthem37.craft.domain.memory.event.BindMemoryChatMemoryConfigEvent;
-import io.github.anthem37.craft.domain.memory.event.CreatedChatMemoryConfigEvent;
-import io.github.anthem37.craft.domain.memory.event.DeletedChatMemoryConfigEvent;
-import io.github.anthem37.craft.domain.memory.event.UpdatedChatMemoryConfigEvent;
+import io.github.anthem37.craft.domain.memory.event.*;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryConfigParams;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import lombok.AllArgsConstructor;
@@ -92,5 +89,14 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
      */
     public void markAsBindMemory(Long memoryId) {
         addDomainEvent(new BindMemoryChatMemoryConfigEvent(this, memoryId));
+    }
+
+    /**
+     * 标记为已经解绑记忆，触发 UnBindMemoryChatMemoryConfigEvent 事件
+     *
+     * @param memoryId 记忆ID
+     */
+    public void markAsUnbindMemory(Long memoryId) {
+        addDomainEvent(new UnbindMemoryChatMemoryConfigEvent(this, memoryId));
     }
 }
