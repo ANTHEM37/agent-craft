@@ -13,7 +13,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/11 15:34:10
  */
-public interface ILLMConfigRepository {
+public interface ILLMConfigQueryRepository {
 
     /**
      * 根据ID查询LLM配置

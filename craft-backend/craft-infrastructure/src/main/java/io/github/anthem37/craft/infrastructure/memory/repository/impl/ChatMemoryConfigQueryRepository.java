@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
-import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigRepository;
+import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigQueryRepository;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Repository
 @RequiredArgsConstructor
-public class ChatMemoryConfigRepository implements IChatMemoryConfigRepository {
+public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRepository {
 
     private final IChatMemoryConfigMapper chatMemoryConfigMapper;
 

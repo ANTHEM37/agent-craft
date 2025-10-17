@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.dto.query.ListChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigRepository;
+import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,12 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListChatMemoryConfigQueryHandler implements IQueryHandler<ListChatMemoryConfigQuery, List<ChatMemoryConfigDTO>> {
 
-    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
+    private final IChatMemoryConfigQueryRepository chatMemoryConfigQueryRepository;
 
     @Override
     public List<ChatMemoryConfigDTO> handle(ListChatMemoryConfigQuery query) {
 
-        return chatMemoryConfigRepository.listByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
+        return chatMemoryConfigQueryRepository.listByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
     }
 
     @Override

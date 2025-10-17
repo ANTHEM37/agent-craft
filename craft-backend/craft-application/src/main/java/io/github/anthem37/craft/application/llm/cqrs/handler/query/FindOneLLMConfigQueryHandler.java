@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.llm.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.dto.query.FindOneLLMConfigQuery;
-import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
+import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FindOneLLMConfigQueryHandler implements IQueryHandler<FindOneLLMConfigQuery, LLMConfigDTO> {
 
-    private final ILLMConfigRepository llmConfigRepository;
+    private final ILLMConfigQueryRepository llmConfigQueryRepository;
 
     @Override
     public LLMConfigDTO handle(FindOneLLMConfigQuery query) {
 
-        return llmConfigRepository.findById(query.getId());
+        return llmConfigQueryRepository.findById(query.getId());
     }
 
     @Override

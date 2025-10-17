@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapp
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
-import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
+import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import io.github.anthem37.craft.infrastructure.llm.converter.LLMConfigPOConverter;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Repository
 @RequiredArgsConstructor
-public class LLMConfigRepository implements ILLMConfigRepository {
+public class LLMConfigQueryRepository implements ILLMConfigQueryRepository {
 
     private final ILLMConfigMapper llmConfigMapper;
 

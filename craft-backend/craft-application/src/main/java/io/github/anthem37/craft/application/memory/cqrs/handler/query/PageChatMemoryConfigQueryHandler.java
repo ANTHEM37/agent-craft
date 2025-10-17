@@ -3,7 +3,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.query;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.dto.query.PageChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigRepository;
+import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PageChatMemoryConfigQueryHandler implements IQueryHandler<PageChatMemoryConfigQuery, PageDTO<ChatMemoryConfigDTO>> {
 
-    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
+    private final IChatMemoryConfigQueryRepository chatMemoryConfigQueryRepository;
 
     @Override
     public PageDTO<ChatMemoryConfigDTO> handle(PageChatMemoryConfigQuery query) {
 
-        return chatMemoryConfigRepository.pageByConfigNameAndChatMemoryType(query.getCurrent(), query.getSize(), query.getConfigName(), query.getChatMemoryType());
+        return chatMemoryConfigQueryRepository.pageByConfigNameAndChatMemoryType(query.getCurrent(), query.getSize(), query.getConfigName(), query.getChatMemoryType());
     }
 
     @Override

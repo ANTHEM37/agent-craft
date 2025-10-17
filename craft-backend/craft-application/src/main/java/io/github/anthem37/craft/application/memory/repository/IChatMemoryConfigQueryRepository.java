@@ -13,7 +13,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/11 15:34:10
  */
-public interface IChatMemoryConfigRepository {
+public interface IChatMemoryConfigQueryRepository {
 
     /**
      * 分页查询记忆配置

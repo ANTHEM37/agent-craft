@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.application.llm.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.llm.dto.query.CountLLMConfigQuery;
-import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
+import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CountLLMConfigQueryHandler implements IQueryHandler<CountLLMConfigQuery, Long> {
 
-    private final ILLMConfigRepository llmConfigRepository;
+    private final ILLMConfigQueryRepository llmConfigQueryRepository;
 
     @Override
     public Long handle(CountLLMConfigQuery query) {
 
-        return llmConfigRepository.countByModelNameAndConfigNameAndProvider(query.getModelName(), query.getConfigName(), query.getProvider());
+        return llmConfigQueryRepository.countByModelNameAndConfigNameAndProvider(query.getModelName(), query.getConfigName(), query.getProvider());
     }
 
     @Override

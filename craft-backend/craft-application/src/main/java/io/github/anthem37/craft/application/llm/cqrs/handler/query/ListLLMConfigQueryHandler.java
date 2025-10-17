@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.llm.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.dto.query.ListLLMConfigQuery;
-import io.github.anthem37.craft.application.llm.repository.ILLMConfigRepository;
+import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,12 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListLLMConfigQueryHandler implements IQueryHandler<ListLLMConfigQuery, List<LLMConfigDTO>> {
 
-    private final ILLMConfigRepository llmConfigRepository;
+    private final ILLMConfigQueryRepository llmConfigQueryRepository;
 
     @Override
     public List<LLMConfigDTO> handle(ListLLMConfigQuery query) {
 
-        return llmConfigRepository.listByModelNameAndConfigNameAndProvider(query.getModelName(), query.getConfigName(), query.getProvider());
+        return llmConfigQueryRepository.listByModelNameAndConfigNameAndProvider(query.getModelName(), query.getConfigName(), query.getProvider());
     }
 
     @Override

@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.dto.query.FindOneChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigRepository;
+import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigQueryRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FindOneChatMemoryConfigQueryHandler implements IQueryHandler<FindOneChatMemoryConfigQuery, ChatMemoryConfigDTO> {
 
-    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
+    private final IChatMemoryConfigQueryRepository chatMemoryConfigQueryRepository;
 
     @Override
     public ChatMemoryConfigDTO handle(FindOneChatMemoryConfigQuery query) {
 
-        return chatMemoryConfigRepository.findById(query.getId());
+        return chatMemoryConfigQueryRepository.findById(query.getId());
     }
 
     @Override
