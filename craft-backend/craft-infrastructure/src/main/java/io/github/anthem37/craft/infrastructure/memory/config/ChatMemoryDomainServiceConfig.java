@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.infrastructure.memory.config;
 
-import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
+import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.craft.domain.memory.service.impl.ChatMemoryDomainService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

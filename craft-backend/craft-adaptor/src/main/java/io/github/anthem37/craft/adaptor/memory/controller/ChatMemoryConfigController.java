@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.adaptor.memory.controller;
 
 import io.github.anthem37.craft.adaptor.common.dto.response.Response;
-import io.github.anthem37.craft.adaptor.memory.controller.request.*;
+import io.github.anthem37.craft.adaptor.memory.controller.dto.request.*;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigService;

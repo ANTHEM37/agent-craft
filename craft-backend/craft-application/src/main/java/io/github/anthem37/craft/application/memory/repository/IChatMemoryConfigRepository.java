@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.application.memory.respository;
+package io.github.anthem37.craft.application.memory.repository;
 
 
 import io.github.anthem37.craft.application.common.dto.PageDTO;

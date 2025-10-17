@@ -5,7 +5,7 @@ import dev.langchain4j.memory.ChatMemory;
 import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryCommand;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.model.factory.IChatMemoryFactory;
-import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
+import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.craft.domain.memory.service.IChatMemoryDomainService;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;

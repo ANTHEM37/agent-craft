@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.adaptor.memory.controller.request;
+package io.github.anthem37.craft.adaptor.memory.controller.dto.request;
 
 
 import io.github.anthem37.craft.application.memory.dto.query.FindOneChatMemoryConfigQuery;

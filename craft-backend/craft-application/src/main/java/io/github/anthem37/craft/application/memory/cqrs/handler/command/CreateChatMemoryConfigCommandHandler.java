@@ -3,7 +3,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.command;
 import io.github.anthem37.craft.application.memory.converter.ChatMemoryConfigCommandConverter;
 import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
-import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
+import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,9 +1,9 @@
-package io.github.anthem37.craft.infrastructure.memory.domain.respository.Impl;
+package io.github.anthem37.craft.infrastructure.memory.domain.repository.impl;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
-import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
+import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;

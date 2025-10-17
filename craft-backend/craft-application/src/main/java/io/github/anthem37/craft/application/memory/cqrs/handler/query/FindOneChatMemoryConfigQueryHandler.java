@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.query;
 
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.dto.query.FindOneChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.respository.IChatMemoryConfigRepository;
+import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

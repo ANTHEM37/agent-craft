@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.domain.memory.respository;
+package io.github.anthem37.craft.domain.memory.repository;
 
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.easy.ddd.domain.repository.IDomainRepository;
