@@ -7,6 +7,7 @@ import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemory
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigRefPO;
+import io.github.anthem37.easy.ddd.infrastructure.repository.AbstractDomainRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,18 +20,18 @@ import java.util.Optional;
  */
 @Component
 @RequiredArgsConstructor
-public class ChatMemoryConfigDomainRepository implements IChatMemoryConfigDomainRepository {
+public class ChatMemoryConfigDomainRepository extends AbstractDomainRepository<ChatMemoryConfig, Long> implements IChatMemoryConfigDomainRepository {
 
     private final IChatMemoryConfigMapper chatMemoryConfigMapper;
     private final IChatMemoryConfigRefMapper chatMemoryConfigRefMapper;
 
     @Override
-    public Optional<ChatMemoryConfig> findById(Long id) {
+    protected Optional<ChatMemoryConfig> doFindById(Long id) {
         return Optional.ofNullable(chatMemoryConfigMapper.selectById(id)).map(ChatMemoryConfigPOConverter.INSTANCE::toDomain);
     }
 
     @Override
-    public void save(ChatMemoryConfig chatMemoryConfig) {
+    protected void doInsert(ChatMemoryConfig chatMemoryConfig) {
         ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.insert(po);
         chatMemoryConfig.setId(po.getId());
@@ -38,14 +39,14 @@ public class ChatMemoryConfigDomainRepository implements IChatMemoryConfigDomain
     }
 
     @Override
-    public void update(ChatMemoryConfig chatMemoryConfig) {
+    protected void doUpdateById(ChatMemoryConfig chatMemoryConfig) {
         ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.updateById(po);
         chatMemoryConfig.markAsUpdated();
     }
 
     @Override
-    public void remove(ChatMemoryConfig chatMemoryConfig) {
+    protected void doDeleteById(ChatMemoryConfig chatMemoryConfig) {
         chatMemoryConfigMapper.deleteById(chatMemoryConfig.getId());
         chatMemoryConfig.markAsDeleted();
     }
@@ -57,5 +58,5 @@ public class ChatMemoryConfigDomainRepository implements IChatMemoryConfigDomain
         chatMemoryConfig.markAsBindMemory(memoryId);
         save(chatMemoryConfig);
     }
-    
+
 }
