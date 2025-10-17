@@ -1,12 +1,11 @@
 package io.github.anthem37.craft.infrastructure.llm.domain.factory;
 
 import cn.hutool.core.lang.Assert;
-import cn.hutool.extra.spring.SpringUtil;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.StreamingChatModel;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.factory.IChatModelFactory;
-import io.github.anthem37.craft.infrastructure.llm.domain.repository.impl.LLMConfigDomainRepository;
+import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
@@ -17,6 +16,8 @@ import java.util.Optional;
  */
 @RequiredArgsConstructor
 public abstract class AbstractChatModelFactory implements IChatModelFactory {
+
+    private final ILLMConfigDomainRepository llmConfigDomainRepository;
 
     @Override
     public ChatModel createChatModel(Long llmConfigId) {
@@ -38,8 +39,7 @@ public abstract class AbstractChatModelFactory implements IChatModelFactory {
      * @return LLM配置
      */
     private LLMConfig getLlmConfig(Long llmConfigId) {
-        LLMConfigDomainRepository chatModelRepository = SpringUtil.getBean(LLMConfigDomainRepository.class);
-        Optional<LLMConfig> llmConfigOptional = chatModelRepository.findById(llmConfigId);
+        Optional<LLMConfig> llmConfigOptional = llmConfigDomainRepository.findById(llmConfigId);
         Assert.isTrue(llmConfigOptional.isPresent(), "LLM配置不存在，ID：{}", llmConfigId);
 
         return llmConfigOptional.get();

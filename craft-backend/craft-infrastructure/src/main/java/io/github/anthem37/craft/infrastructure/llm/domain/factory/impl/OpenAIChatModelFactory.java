@@ -9,6 +9,7 @@ import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
 import io.github.anthem37.craft.infrastructure.llm.domain.factory.AbstractChatModelFactory;
 import io.github.anthem37.craft.infrastructure.llm.domain.factory.IChatModelInnerFactory;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class OpenAIChatModelFactory extends AbstractChatModelFactory implements IChatModelInnerFactory {
+
+    public OpenAIChatModelFactory(ILLMConfigDomainRepository llmConfigDomainRepository) {
+        super(llmConfigDomainRepository);
+    }
 
     @Override
     public ChatModel createChatModel(LLMConfig llmConfig) {

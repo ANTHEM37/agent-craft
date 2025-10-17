@@ -6,6 +6,7 @@ import io.github.anthem37.craft.domain.llm.event.DeletedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.UpdatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -81,5 +82,45 @@ public class LLMConfig extends BaseAggregateRoot {
      */
     public void markAsDeleted() {
         addDomainEvent(new DeletedLLMConfigEvent(this));
+    }
+
+    /**
+     * 验证聚合根的不变性
+     * 
+     * @throws IllegalArgumentException 当不变性被违反时抛出
+     */
+    public void validateInvariants() {
+        validateRequiredFields();
+        validateExtraInfo();
+        validateProviderAndBaseUrl();
+    }
+
+    /**
+     * 验证必填字段
+     */
+    private void validateRequiredFields() {
+        Assert.hasText(configName, "配置名称不能为空");
+        Assert.notNull(provider, "模型提供商不能为空");
+        Assert.hasText(apiKey, "API密钥不能为空");
+        Assert.hasText(modelName, "模型名称不能为空");
+    }
+
+    /**
+     * 验证额外配置信息
+     */
+    private void validateExtraInfo() {
+        if (extraInfo != null) {
+            extraInfo.validate();
+        }
+    }
+
+    /**
+     * 验证提供商和基础URL的一致性
+     */
+    private void validateProviderAndBaseUrl() {
+        Assert.isTrue(provider != LLMProvider.OPEN_AI || (baseUrl != null && !baseUrl.trim().isEmpty()), 
+            "OpenAI提供商必须设置基础URL");
+        Assert.isTrue(provider != LLMProvider.DASH_SCOPE || (baseUrl != null && !baseUrl.trim().isEmpty()), 
+            "DashScope提供商必须设置基础URL");
     }
 }

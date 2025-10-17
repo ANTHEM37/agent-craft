@@ -5,6 +5,7 @@ import io.github.anthem37.craft.domain.common.model.entity.BaseAggregateRoot;
 import io.github.anthem37.craft.domain.memory.event.*;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryConfigParams;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
+import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -98,5 +99,42 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
      */
     public void markAsUnbindMemory(Long memoryId) {
         addDomainEvent(new UnbindMemoryChatMemoryConfigEvent(this, memoryId));
+    }
+
+    /**
+     * 验证聚合根的不变性
+     * 
+     * @throws IllegalArgumentException 当不变性被违反时抛出
+     */
+    public void validateInvariants() {
+        validateRequiredFields();
+        validateChatMemoryType();
+        validateParams();
+    }
+
+    /**
+     * 验证必填字段
+     */
+    private void validateRequiredFields() {
+        Assert.hasText(configName, "配置名称不能为空");
+        Assert.notNull(chatMemoryType, "记忆类型不能为空");
+    }
+
+    /**
+     * 验证记忆类型
+     */
+    private void validateChatMemoryType() {
+        // 这里可以添加对特定记忆类型的验证逻辑
+        // 例如检查记忆类型是否被支持等
+    }
+
+    /**
+     * 验证记忆参数
+     */
+    private void validateParams() {
+        if (params != null) {
+            // 这里可以添加对记忆参数的验证逻辑
+            // 例如检查参数的有效性等
+        }
     }
 }

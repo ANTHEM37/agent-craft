@@ -2,6 +2,7 @@ package io.github.anthem37.craft.domain.llm.model.value;
 
 import dev.langchain4j.model.chat.request.ResponseFormatType;
 import dev.langchain4j.model.chat.request.ToolChoice;
+import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import io.github.anthem37.easy.ddd.domain.model.IValueObject;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -123,4 +124,78 @@ public class ExtraInfo implements IValueObject {
      * 聊天模型监听器列表
      */
     private List<String> chatModelListenerNames;
+
+    /**
+     * 验证业务规则
+     * 
+     * @throws IllegalArgumentException 当参数不符合业务规则时抛出
+     */
+    public void validate() {
+        validateTemperature();
+        validateTopP();
+        validateTopK();
+        validateFrequencyPenalty();
+        validatePresencePenalty();
+        validateMaxOutputTokens();
+    }
+
+    /**
+     * 验证temperature参数
+     */
+    private void validateTemperature() {
+        if (temperature != null) {
+            Assert.isTrue(temperature >= 0.0 && temperature <= 2.0, 
+                "temperature参数必须在0.0-2.0范围内，当前值: " + temperature);
+        }
+    }
+
+    /**
+     * 验证topP参数
+     */
+    private void validateTopP() {
+        if (topP != null) {
+            Assert.isTrue(topP >= 0.0 && topP <= 1.0, 
+                "topP参数必须在0.0-1.0范围内，当前值: " + topP);
+        }
+    }
+
+    /**
+     * 验证topK参数
+     */
+    private void validateTopK() {
+        if (topK != null) {
+            Assert.isTrue(topK >= 1 && topK <= 100, 
+                "topK参数必须在1-100范围内，当前值: " + topK);
+        }
+    }
+
+    /**
+     * 验证frequencyPenalty参数
+     */
+    private void validateFrequencyPenalty() {
+        if (frequencyPenalty != null) {
+            Assert.isTrue(frequencyPenalty >= -2.0 && frequencyPenalty <= 2.0, 
+                "frequencyPenalty参数必须在-2.0-2.0范围内，当前值: " + frequencyPenalty);
+        }
+    }
+
+    /**
+     * 验证presencePenalty参数
+     */
+    private void validatePresencePenalty() {
+        if (presencePenalty != null) {
+            Assert.isTrue(presencePenalty >= -2.0 && presencePenalty <= 2.0, 
+                "presencePenalty参数必须在-2.0-2.0范围内，当前值: " + presencePenalty);
+        }
+    }
+
+    /**
+     * 验证maxOutputTokens参数
+     */
+    private void validateMaxOutputTokens() {
+        if (maxOutputTokens != null) {
+            Assert.isTrue(maxOutputTokens >= 1 && maxOutputTokens <= 8192, 
+                "maxOutputTokens参数必须在1-8192范围内，当前值: " + maxOutputTokens);
+        }
+    }
 }
