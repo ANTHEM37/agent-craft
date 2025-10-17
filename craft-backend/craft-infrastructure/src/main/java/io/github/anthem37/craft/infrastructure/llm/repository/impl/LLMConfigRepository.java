@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.llm.application.repository.impl;
+package io.github.anthem37.craft.infrastructure.llm.repository.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;

@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.memory.domain.service.impl;
+package io.github.anthem37.craft.domain.memory.service.impl;
 
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
@@ -6,8 +6,6 @@ import io.github.anthem37.craft.domain.memory.service.IChatMemoryDomainService;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 聊天记忆领域服务实现
@@ -16,13 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2025/10/17 15:00:00
  */
 @Slf4j
-@Service
 @RequiredArgsConstructor
 public class ChatMemoryDomainService implements IChatMemoryDomainService {
 
     private final IChatMemoryConfigDomainRepository chatMemoryConfigDomainRepository;
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public void bindMemoryToConfig(ChatMemoryConfig chatMemoryConfig, Long memoryId) {
         // 验证输入参数
@@ -37,7 +33,6 @@ public class ChatMemoryDomainService implements IChatMemoryDomainService {
         log.info("成功绑定记忆配置，configId: {}, memoryId: {}", chatMemoryConfig.getId(), memoryId);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
     public void unbindMemoryFromConfig(ChatMemoryConfig chatMemoryConfig, Long memoryId) {
         // 验证输入参数

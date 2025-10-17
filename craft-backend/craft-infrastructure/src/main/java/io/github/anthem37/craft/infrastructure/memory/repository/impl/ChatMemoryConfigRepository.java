@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.memory.application.respository.impl;
+package io.github.anthem37.craft.infrastructure.memory.repository.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
