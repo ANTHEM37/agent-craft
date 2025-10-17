@@ -2,7 +2,7 @@ package io.github.anthem37.craft.application.memory.service.impl;
 
 import cn.hutool.core.util.IdUtil;
 import dev.langchain4j.memory.ChatMemory;
-import io.github.anthem37.craft.application.memory.service.IChatMemoryCreationService;
+import io.github.anthem37.craft.application.memory.service.IChatMemoryService;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.model.factory.IChatMemoryFactory;
 import io.github.anthem37.craft.domain.memory.service.IChatMemoryBindingDomainService;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ChatMemoryCreationService implements IChatMemoryCreationService {
+public class ChatMemoryService implements IChatMemoryService {
     
     private final IChatMemoryBindingDomainService chatMemoryBindingDomainService;
     private final IChatMemoryFactory chatMemoryFactory;

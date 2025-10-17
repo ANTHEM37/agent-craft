@@ -10,7 +10,7 @@ import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
  * @author hb28301
  * @since 2025/01/15
  */
-public interface IChatMemoryCreationService {
+public interface IChatMemoryService {
     
     /**
      * 创建聊天记忆实例
