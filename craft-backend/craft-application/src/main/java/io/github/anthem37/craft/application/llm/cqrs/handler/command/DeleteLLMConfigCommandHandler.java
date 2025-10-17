@@ -21,11 +21,19 @@ public class DeleteLLMConfigCommandHandler implements ICommandHandler<DeleteLLMC
 
     @Override
     public Boolean handle(DeleteLLMConfigCommand command) {
+        // 查找聚合根
         Optional<LLMConfig> llmConfigOptional = llmConfigDomainRepository.findById(command.getId());
         if (llmConfigOptional.isEmpty()) {
-            return true;
+            return true; // 幂等性：如果不存在则认为删除成功
         }
-        llmConfigDomainRepository.remove(llmConfigOptional.get());
+        
+        LLMConfig llmConfig = llmConfigOptional.get();
+        
+        // 可以在这里添加删除前的业务规则验证
+        // 例如：检查是否有其他实体依赖此配置
+        
+        // 执行删除操作
+        llmConfigDomainRepository.remove(llmConfig);
         return true;
     }
 

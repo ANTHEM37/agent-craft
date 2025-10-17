@@ -20,7 +20,13 @@ public class UpdateLLMConfigCommandHandler implements ICommandHandler<UpdateLLMC
 
     @Override
     public Boolean handle(UpdateLLMConfigCommand command) {
+        // 转换为领域对象
         LLMConfig llmConfig = LLMConfigCommandConverter.INSTANCE.toDomain(command);
+        
+        // 验证聚合根的业务不变性
+        llmConfig.validateInvariants();
+        
+        // 更新聚合根
         llmConfigDomainRepository.update(llmConfig);
         return true;
     }

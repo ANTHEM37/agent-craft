@@ -2,6 +2,7 @@ package io.github.anthem37.craft.application.llm.cqrs.handler.command;
 
 import io.github.anthem37.craft.application.llm.converter.LLMConfigCommandConverter;
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
+import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,14 @@ public class CreateLLMConfigCommandHandler implements ICommandHandler<CreateLLMC
 
     @Override
     public Boolean handle(CreateLLMConfigCommand command) {
-        llmConfigDomainRepository.save(LLMConfigCommandConverter.INSTANCE.toDomain(command));
+        // 转换为领域对象
+        LLMConfig llmConfig = LLMConfigCommandConverter.INSTANCE.toDomain(command);
+        
+        // 验证聚合根的业务不变性
+        llmConfig.validateInvariants();
+        
+        // 保存聚合根
+        llmConfigDomainRepository.save(llmConfig);
         return true;
     }
 

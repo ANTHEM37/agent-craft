@@ -2,6 +2,7 @@ package io.github.anthem37.craft.application.memory.cqrs.handler.command;
 
 import io.github.anthem37.craft.application.memory.converter.ChatMemoryConfigCommandConverter;
 import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
+import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,14 @@ public class CreateChatMemoryConfigCommandHandler implements ICommandHandler<Cre
 
     @Override
     public Boolean handle(CreateChatMemoryConfigCommand command) {
-        ChatMemoryConfigDomainRepository.save(ChatMemoryConfigCommandConverter.INSTANCE.toDomain(command));
+        // 转换为领域对象
+        ChatMemoryConfig chatMemoryConfig = ChatMemoryConfigCommandConverter.INSTANCE.toDomain(command);
+        
+        // 验证聚合根的业务不变性
+        chatMemoryConfig.validateInvariants();
+        
+        // 保存聚合根
+        ChatMemoryConfigDomainRepository.save(chatMemoryConfig);
         return true;
     }
 

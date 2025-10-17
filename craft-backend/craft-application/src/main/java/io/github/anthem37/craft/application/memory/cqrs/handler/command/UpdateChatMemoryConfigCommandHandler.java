@@ -20,8 +20,14 @@ public class UpdateChatMemoryConfigCommandHandler implements ICommandHandler<Upd
 
     @Override
     public Boolean handle(UpdateChatMemoryConfigCommand command) {
-        ChatMemoryConfig ChatMemoryConfig = ChatMemoryConfigCommandConverter.INSTANCE.toDomain(command);
-        ChatMemoryConfigDomainRepository.update(ChatMemoryConfig);
+        // 转换为领域对象
+        ChatMemoryConfig chatMemoryConfig = ChatMemoryConfigCommandConverter.INSTANCE.toDomain(command);
+        
+        // 验证聚合根的业务不变性
+        chatMemoryConfig.validateInvariants();
+        
+        // 更新聚合根
+        ChatMemoryConfigDomainRepository.update(chatMemoryConfig);
         return true;
     }
 

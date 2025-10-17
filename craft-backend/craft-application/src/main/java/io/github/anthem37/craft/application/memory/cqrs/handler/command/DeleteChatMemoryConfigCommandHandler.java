@@ -23,11 +23,19 @@ public class DeleteChatMemoryConfigCommandHandler implements ICommandHandler<Del
 
     @Override
     public Boolean handle(DeleteChatMemoryConfigCommand command) {
-        Optional<ChatMemoryConfig> ChatMemoryConfigOptional = ChatMemoryConfigDomainRepository.findById(command.getId());
-        if (ChatMemoryConfigOptional.isEmpty()) {
-            return true;
+        // 查找聚合根
+        Optional<ChatMemoryConfig> chatMemoryConfigOptional = ChatMemoryConfigDomainRepository.findById(command.getId());
+        if (chatMemoryConfigOptional.isEmpty()) {
+            return true; // 幂等性：如果不存在则认为删除成功
         }
-        ChatMemoryConfigDomainRepository.remove(ChatMemoryConfigOptional.get());
+        
+        ChatMemoryConfig chatMemoryConfig = chatMemoryConfigOptional.get();
+        
+        // 可以在这里添加删除前的业务规则验证
+        // 例如：检查是否有绑定的记忆实例需要先解绑
+        
+        // 执行删除操作
+        ChatMemoryConfigDomainRepository.remove(chatMemoryConfig);
         return true;
     }
 
