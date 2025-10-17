@@ -19,4 +19,10 @@ public enum ChatMemoryStoreType implements IValueObject {
      * 数据库存储聊天记忆
      */
     IN_DB,
+
+    /**
+     * Redis 存储聊天记忆
+     */
+    IN_REDIS,
+    ;
 }

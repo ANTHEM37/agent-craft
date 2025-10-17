@@ -73,4 +73,10 @@ public class ChatContent implements IValueObject {
         }
     }
 
+    public static ChatContent fromLangChain4jChatMessages(List<ChatMessage> messages) {
+        if (CollectionUtil.isEmpty(messages)) {
+            return new ChatContent();
+        }
+        return new ChatContent(messages.stream().map(message -> new ChatMessageData(message.type(), JSONUtil.toJsonStr(message))).toList());
+    }
 }

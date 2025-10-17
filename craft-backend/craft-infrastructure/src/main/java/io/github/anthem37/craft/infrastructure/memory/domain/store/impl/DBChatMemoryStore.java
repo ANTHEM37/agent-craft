@@ -1,6 +1,5 @@
 package io.github.anthem37.craft.infrastructure.memory.domain.store.impl;
 
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.conditions.update.LambdaUpdateChainWrapper;
 import dev.langchain4j.data.message.ChatMessage;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * 数据库存储
+ * 数据库存储（不建议使用）
  *
  * @author hb28301
  * @since 2025/10/14 14:44:20
@@ -43,7 +42,7 @@ public class DBChatMemoryStore implements ChatMemoryStore {
     public void updateMessages(Object memoryId, List<ChatMessage> messages) {
         new LambdaUpdateChainWrapper<>(chatMessageMapper)
                 .eq(ChatMemoryPO::getId, memoryId)
-                .set(ChatMemoryPO::getContent, new ChatContent().setMessages(messages.stream().map(message -> new ChatContent.ChatMessageData(message.type(), JSONUtil.toJsonStr(message))).toList()))
+                .set(ChatMemoryPO::getContent, ChatContent.fromLangChain4jChatMessages(messages))
                 .update();
     }
 

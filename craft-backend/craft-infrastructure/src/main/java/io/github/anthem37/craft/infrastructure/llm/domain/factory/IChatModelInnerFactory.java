@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author hb28301
- * @date 2025/10/16 17:43:09
+ * @since 2025/10/16 17:43:09
  */
 public interface IChatModelInnerFactory extends IChatModelFactory {
 
