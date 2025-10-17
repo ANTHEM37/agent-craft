@@ -13,10 +13,26 @@ public interface IChatModelFactory {
     /**
      * 创建一个新的聊天模型
      *
+     * @param llmConfigId 模型配置ID
+     * @return 聊天模型
+     */
+    ChatModel createChatModel(Long llmConfigId);
+
+    /**
+     * 创建一个新的聊天模型
+     *
      * @param llmConfig 模型名称
      * @return 聊天模型
      */
     ChatModel createChatModel(LLMConfig llmConfig);
+
+    /**
+     * 创建一个新的流式聊天模型
+     *
+     * @param llmConfigId 模型配置ID
+     * @return 流式聊天模型
+     */
+    StreamingChatModel createStreamingChatModel(Long llmConfigId);
 
     /**
      * 创建一个新的流式聊天模型

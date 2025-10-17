@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.infrastructure.memory.domain.memory.impl;
+package io.github.anthem37.craft.infrastructure.memory.domain.memory;
 
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;

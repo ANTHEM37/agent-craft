@@ -9,6 +9,7 @@ import dev.langchain4j.model.openai.OpenAiChatRequestParameters;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import io.github.anthem37.craft.infrastructure.llm.domain.factory.AbstractChatModelFactory;
 import io.github.anthem37.craft.infrastructure.llm.domain.factory.IChatModelInnerFactory;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @since 2025/10/11 16:37:49
  */
 @Component
-public class DashScopeChatModelFactory implements IChatModelInnerFactory {
+public class DashScopeChatModelFactory extends AbstractChatModelFactory implements IChatModelInnerFactory {
 
     @Override
     public ChatModel createChatModel(LLMConfig llmConfig) {

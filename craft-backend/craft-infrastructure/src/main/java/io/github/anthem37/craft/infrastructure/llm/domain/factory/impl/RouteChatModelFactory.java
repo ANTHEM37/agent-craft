@@ -4,8 +4,10 @@ import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.chat.StreamingChatModel;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.factory.IChatModelFactory;
+import io.github.anthem37.craft.infrastructure.llm.domain.factory.AbstractChatModelFactory;
 import io.github.anthem37.craft.infrastructure.llm.domain.factory.IChatModelInnerFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,9 +18,10 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/17 10:53:50
  */
+@Primary
 @Component
 @RequiredArgsConstructor
-public class RouteChatModelFactory implements IChatModelFactory {
+public class RouteChatModelFactory extends AbstractChatModelFactory implements IChatModelFactory {
 
     private final List<IChatModelInnerFactory> chatModelInnerFactories;
 

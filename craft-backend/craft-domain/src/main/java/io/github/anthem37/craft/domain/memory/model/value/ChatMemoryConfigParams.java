@@ -62,4 +62,25 @@ public class ChatMemoryConfigParams implements IValueObject {
         private Integer maxTokens;
     }
 
+    /**
+     * 摘要窗口参数
+     */
+    @EqualsAndHashCode(callSuper = true)
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Accessors(chain = true)
+    public static class SummaryWindowParams extends ChatMemoryConfigParams {
+
+        /**
+         * LLM配置ID（用于生成摘要）
+         */
+        private Long llmConfigId;
+
+        /**
+         * 最大消息数阈值
+         */
+        private Integer maxMessages;
+    }
+
 }

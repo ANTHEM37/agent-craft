@@ -23,6 +23,11 @@ public enum ChatMemoryType implements IValueObject {
      * 令牌窗口记忆类型
      */
     TOKEN_WINDOW(),
+
+    /**
+     * 摘要记忆类型
+     */
+    SUMMARY_WINDOW(),
     ;
 
 }
