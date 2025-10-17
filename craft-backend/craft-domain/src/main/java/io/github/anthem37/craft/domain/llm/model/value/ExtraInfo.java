@@ -1,8 +1,8 @@
 package io.github.anthem37.craft.domain.llm.model.value;
 
 import dev.langchain4j.model.chat.request.ResponseFormatType;
+import dev.langchain4j.model.chat.request.ToolChoice;
 import io.github.anthem37.easy.ddd.domain.model.IValueObject;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * 额外配置信息，包含模型的详细参数
+ * 该类使用了Lombok注解来简化代码，提供了getter、setter、构造器等方法
  *
  * @author hb28301
  * @since 2025/10/10 19:08:27
@@ -23,87 +24,100 @@ import java.util.List;
 public class ExtraInfo implements IValueObject {
 
     /**
-     * 是否返回思考过程
-     * 默认值: false
+     * 随机种子，用于控制模型的生成结果的可重复性
+     * 范围通常是0到2^32-1（即0到4294967295）
+     * 如果设置为null或不设置，模型的输出将是随机的，每次调用可能产生不同的结果
+     * 如果设置了具体的整数值，模型在相同的输入和参数下将产生相同的输出
+     * 这对于调试和测试非常有用，因为它允许开发者重现特定的生成结果
      */
-    private boolean returnThinking = false;
+    private Integer seed;
 
     /**
-     * 温度参数，控制生成文本的随机性，值越高越随机(0.0-2.0)
-     * 默认值: 0.7
+     * 温度参数，用于控制模型的生成结果的随机性
+     * 范围通常是0到1（包括0和1）
+     * 默认值为0.7
+     * 较高的值（如0.9或1.0）会使模型的输出更加随机，而较低的值（如0.5或0.3）会使输出更加确定
+     * 温度参数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    @DecimalMin(value = "0.0", inclusive = true, message = "temperature必须>=0.0")
-    @DecimalMax(value = "2.0", inclusive = true, message = "temperature必须<=2.0")
     private Double temperature = 0.7;
 
     /**
-     * 核采样参数，控制生成时考虑的词汇概率质量(0.0-1.0)
-     * 默认值: 1.0
+     * Top-p（nucleus sampling）参数，用于控制模型的生成结果的随机性
+     * 范围通常是0到1（包括0和1）
+     * 默认值为0.95
+     * 较高的值（如0.95或1.0）会使模型的输出更加随机，而较低的值（如0.5或0.3）会使输出更加确定
+     * Top-p参数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    @DecimalMin(value = "0.0", inclusive = true, message = "topP必须>=0.0")
-    @DecimalMax(value = "1.0", inclusive = true, message = "topP必须<=1.0")
-    private Double topP = 1.0;
+    private Double topP = 0.95;
 
     /**
-     * 最大令牌数，限制生成文本的最大长度
-     * 默认值: 1000
+     * Top-k参数，用于控制模型的生成结果的随机性
+     * 范围通常是1到100（包括1和100）
+     * 默认值为40
+     * 较高的值（如50或100）会使模型的输出更加随机，而较低的值（如10或20）会使输出更加确定
+     * Top-k参数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    @Min(value = 1, message = "maxTokens必须为正整数")
-    private Integer maxTokens = 1000;
+    private Integer topK = 40;
 
     /**
-     * 存在惩罚参数，减少重复主题的出现概率
-     * 默认值: 0.0
+     * 频率惩罚参数，用于控制模型生成结果中重复内容的程度
+     * 范围通常是-2.0到2.0（包括-2.0和2.0）
+     * 默认值为0.0
+     * 较高的值（如1.0或2.0）会使模型在生成文本时更加关注新的内容，而较低的值（如-1.0或-2.0）会使模型在生成文本时更加关注重复内容
+     * 频率惩罚参数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    @DecimalMin(value = "-2.0", inclusive = true, message = "presencePenalty必须>=-2.0")
-    @DecimalMax(value = "2.0", inclusive = true, message = "presencePenalty必须<=2.0")
-    private Double presencePenalty = 0.0;
-
-    /**
-     * 频率惩罚参数，减少重复词汇的出现频率
-     * 默认值: 0.0
-     */
-    @DecimalMin(value = "-2.0", inclusive = true, message = "frequencyPenalty必须>=-2.0")
-    @DecimalMax(value = "2.0", inclusive = true, message = "frequencyPenalty必须<=2.0")
     private Double frequencyPenalty = 0.0;
 
     /**
-     * 停止序列列表，用于指定在生成文本时的停止条件
+     * 存在惩罚参数，用于控制模型生成结果中是否包含新内容的程度
+     * 范围通常是-2.0到2.0（包括-2.0和2.0）
+     * 默认值为0.0
+     * 较高的值（如1.0或2.0）会使模型在生成文本时更加关注新的内容，而较低的值（如-1.0或-2.0）会使模型在生成文本时更加关注重复内容
+     * 存在惩罚参数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    private List<String> stop;
+    private Double presencePenalty = 0.0;
 
     /**
-     * 响应格式类型，指定生成文本的格式类型
-     * 默认值: TEXT
+     * 最大输出令牌数，用于限制模型生成的文本长度
+     * 范围通常是1到模型的最大上下文长度（如2048或4096）
+     * 默认值为2048
+     * 较高的值（如3072或4096）会使模型生成更长的文本，而较低的值（如512或1024）会使生成的文本更短
+     * 最大输出令牌数在生成文本时对结果的影响是显著的，因此在使用模型时需要根据具体任务和需求调整这个参数
      */
-    @NotNull(message = "responseFormatType不能为空")
-    private ResponseFormatType responseFormatType = ResponseFormatType.TEXT;
+    private Integer maxOutputTokens = 2048;
 
     /**
-     * 请求超时时间
-     * 默认值: 30秒
+     * 停止序列列表，用于指定模型在生成文本时遇到这些序列时停止生成
+     * 每个停止序列通常是一个字符串，可以是单词、短语或标点符号
+     * 当模型在生成文本时遇到任何一个停止序列时，生成过程将立即停止，并返回当前生成的文本
+     * 停止序列列表可以包含多个序列，以便更灵活地控制生成过程
+     * 如果不设置停止序列，模型将继续生成文本直到达到最大输出令牌数或其他终止条件
      */
-    @Positive(message = "timeout必须为正数秒")
-    private Integer timeout = 30;
+    private List<String> stopSequences;
 
     /**
-     * 最大重试次数
-     * 默认值: 3
+     * 工具规范列表，用于指定模型可以使用的工具
+     * 每个工具规范通常包含工具的名称、描述和参数
+     * 模型在生成文本时可以根据这些规范调用相应的工具
+     * 如果不设置工具规范，模型将无法使用任何工具
      */
-    @PositiveOrZero(message = "maxRetries必须为非负整数")
-    private Integer maxRetries = 3;
+    private List<String> toolNames;
 
     /**
-     * 是否记录请求日志
-     * 默认值: false
+     * {@link ToolChoice}
+     * 工具选择策略，用于指定模型在生成文本时如何选择使用的工具
+     * 可以是自动选择（AUTO）、Required（REQUIRED）或不使用工具（NONE）
+     * 选择合适的工具选择策略可以帮助模型更有效地利用工具，从而生成更准确和有用的文本
      */
-    private boolean logRequests = false;
+    private ToolChoice toolChoice;
 
     /**
-     * 是否记录响应日志
-     * 默认值: false
+     * 响应格式，用于指定模型生成文本的格式
+     * 可以是纯文本（TEXT）、JSON（JSON）或其他自定义格式
+     * 选择合适的响应格式可以确保生成的文本符合预期的结构和内容要求
+     * 如果不设置响应格式，模型将默认生成纯文本
      */
-    private boolean logResponses = false;
+    private ResponseFormatType responseFormatType;
 
     /**
      * 聊天模型监听器列表
