@@ -1,5 +1,6 @@
 package io.github.anthem37.craft.infrastructure.memory.domain.memory.impl;
 
+import cn.hutool.core.lang.Assert;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.ChatMessage;
 import dev.langchain4j.data.message.SystemMessage;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 摘要窗口聊天记忆
@@ -50,7 +52,7 @@ public class SummaryWindowChatMemory extends AbstractChatMemory {
     @Override
     public void add(ChatMessage message) {
         List<ChatMessage> messages = messages();
-        
+
         // 对于摘要窗口，需要特殊处理系统消息
         addMessageForSummaryWindow(messages, message);
 
@@ -74,16 +76,14 @@ public class SummaryWindowChatMemory extends AbstractChatMemory {
         if (message instanceof SystemMessage) {
             SystemMessage newSystemMessage = (SystemMessage) message;
             String newText = newSystemMessage.text();
-            
+
             // 如果是摘要消息，替换现有的摘要消息
             if (newText.startsWith("对话历史摘要：")) {
                 // 移除现有的摘要消息
-                messages.removeIf(msg -> msg instanceof SystemMessage && 
-                    ((SystemMessage) msg).text().startsWith("对话历史摘要："));
+                messages.removeIf(msg -> msg instanceof SystemMessage && ((SystemMessage) msg).text().startsWith("对话历史摘要："));
             } else {
                 // 如果是普通系统消息，替换现有的非摘要系统消息
-                messages.removeIf(msg -> msg instanceof SystemMessage && 
-                    !((SystemMessage) msg).text().startsWith("对话历史摘要："));
+                messages.removeIf(msg -> msg instanceof SystemMessage && !((SystemMessage) msg).text().startsWith("对话历史摘要："));
             }
         }
         messages.add(message);
@@ -274,19 +274,11 @@ public class SummaryWindowChatMemory extends AbstractChatMemory {
         }
 
         public SummaryWindowChatMemory build() {
-            if (id == null) {
-                throw new IllegalArgumentException("id 不能为空");
-            }
-            if (maxMessages == null || maxMessages <= 0) {
-                throw new IllegalArgumentException("maxMessages 必须大于 0");
-            }
-            if (chatModel == null) {
-                throw new IllegalArgumentException("chatModel 不能为空");
-            }
-            if (store == null) {
-                throw new IllegalArgumentException("store 不能为空");
-            }
-
+            Assert.notNull(id, "id 不能为空");
+            Assert.isTrue(Optional.ofNullable(maxMessages).orElse(0) > 0, "maxMessages 必须大于 0");
+            Assert.notNull(chatModel, "chatModel 不能为空");
+            Assert.notNull(store, "store 不能为空");
+            
             return new SummaryWindowChatMemory(id, maxMessages, chatModel, store);
         }
     }
