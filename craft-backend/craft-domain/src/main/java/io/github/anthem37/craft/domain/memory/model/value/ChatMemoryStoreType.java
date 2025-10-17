@@ -11,11 +11,6 @@ import io.github.anthem37.easy.ddd.domain.model.IValueObject;
 public enum ChatMemoryStoreType implements IValueObject {
 
     /**
-     * 内存聊天记忆存储 {@link dev.langchain4j.store.memory.chat.InMemoryChatMemoryStore}
-     */
-    IN_MEMORY,
-
-    /**
      * 数据库存储聊天记忆
      */
     IN_DB,

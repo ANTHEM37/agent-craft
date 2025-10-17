@@ -5,10 +5,10 @@ import cn.hutool.core.util.ObjectUtil;
 import dev.langchain4j.community.model.dashscope.QwenTokenCountEstimator;
 import dev.langchain4j.model.TokenCountEstimator;
 import dev.langchain4j.model.openai.OpenAiTokenCountEstimator;
+import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
 import io.github.anthem37.craft.domain.memory.model.factory.ITokenCountEstimatorFactory;
-import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
-import io.github.anthem37.craft.infrastructure.llm.mybatis.po.LLMConfigPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,15 +20,15 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class TokenCountEstimatorFactory implements ITokenCountEstimatorFactory {
 
-    private final ILLMConfigMapper llmConfigMapper;
+    private final ILLMConfigDomainRepository llmConfigDomainRepository;
 
     @Override
     public TokenCountEstimator createTokenCountEstimator(Long llmConfigId) {
-        LLMConfigPO llmConfigPO = llmConfigMapper.selectById(llmConfigId);
-        Assert.isTrue(ObjectUtil.isNotEmpty(llmConfigPO), "LLM配置不存在，ID：{}", llmConfigId);
-        LLMProvider provider = llmConfigPO.getProvider();
-        String apiKey = llmConfigPO.getApiKey();
-        String modelName = llmConfigPO.getModelName();
+        LLMConfig llmConfig = llmConfigDomainRepository.findById(llmConfigId).orElse(null);
+        Assert.isTrue(ObjectUtil.isNotEmpty(llmConfig), "LLM配置不存在，ID：{}", llmConfigId);
+        LLMProvider provider = llmConfig.getProvider();
+        String apiKey = llmConfig.getApiKey();
+        String modelName = llmConfig.getModelName();
 
         return switch (provider) {
             case OPEN_AI -> new OpenAiTokenCountEstimator(modelName);

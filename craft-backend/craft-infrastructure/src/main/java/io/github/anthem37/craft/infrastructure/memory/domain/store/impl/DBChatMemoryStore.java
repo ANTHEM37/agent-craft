@@ -8,6 +8,7 @@ import io.github.anthem37.craft.domain.memory.model.value.ChatContent;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryPO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.Optional;
  * @author hb28301
  * @since 2025/10/14 14:44:20
  */
+@Component
 @RequiredArgsConstructor
 public class DBChatMemoryStore implements ChatMemoryStore {
 

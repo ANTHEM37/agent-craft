@@ -9,6 +9,7 @@ import io.github.anthem37.craft.infrastructure.common.config.RedisKeys;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
+import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/17 11:07:25
  */
+@Component
 @RequiredArgsConstructor
 public class RedisChatMemoryStore implements ChatMemoryStore {
 
