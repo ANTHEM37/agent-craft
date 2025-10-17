@@ -3,7 +3,7 @@ package io.github.anthem37.craft.infrastructure.memory.domain.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.respository.IChatMemoryConfigDomainRepository;
-import io.github.anthem37.craft.domain.memory.service.IChatMemoryBindingDomainService;
+import io.github.anthem37.craft.domain.memory.service.IChatMemoryDomainService;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigRefPO;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ChatMemoryBindingDomainService implements IChatMemoryBindingDomainService {
+public class ChatMemoryDomainService implements IChatMemoryDomainService {
 
     private final IChatMemoryConfigRefMapper chatMemoryConfigRefMapper;
     private final IChatMemoryConfigDomainRepository chatMemoryConfigDomainRepository;

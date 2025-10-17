@@ -5,7 +5,7 @@ import dev.langchain4j.memory.ChatMemory;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryService;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.model.factory.IChatMemoryFactory;
-import io.github.anthem37.craft.domain.memory.service.IChatMemoryBindingDomainService;
+import io.github.anthem37.craft.domain.memory.service.IChatMemoryDomainService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ChatMemoryService implements IChatMemoryService {
     
-    private final IChatMemoryBindingDomainService chatMemoryBindingDomainService;
+    private final IChatMemoryDomainService chatMemoryBindingDomainService;
     private final IChatMemoryFactory chatMemoryFactory;
     
     @Override
