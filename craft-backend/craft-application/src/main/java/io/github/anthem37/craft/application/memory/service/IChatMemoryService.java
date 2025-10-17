@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.application.memory.service;
 
 import dev.langchain4j.memory.ChatMemory;
-import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
+import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryCommand;
 
 /**
  * 聊天记忆创建服务接口
@@ -15,12 +15,13 @@ public interface IChatMemoryService {
     /**
      * 创建聊天记忆实例
      * 该方法会：
-     * 1. 生成唯一的memoryId
-     * 2. 调用领域服务进行绑定
-     * 3. 调用工厂创建ChatMemory实例
+     * 1. 根据配置ID查询记忆配置
+     * 2. 生成唯一的memoryId
+     * 3. 调用领域服务进行绑定
+     * 4. 调用工厂创建ChatMemory实例
      * 
-     * @param memoryConfig 聊天记忆配置
+     * @param command 创建聊天记忆命令
      * @return 创建的聊天记忆实例
      */
-    ChatMemory createChatMemory(ChatMemoryConfig memoryConfig);
+    ChatMemory createChatMemory(CreateChatMemoryCommand command);
 }
