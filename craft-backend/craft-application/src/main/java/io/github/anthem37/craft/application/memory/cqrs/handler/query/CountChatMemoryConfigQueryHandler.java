@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class CountChatMemoryConfigQueryHandler implements IQueryHandler<CountChatMemoryConfigQuery, Long> {
 
-    private final IChatMemoryConfigRepository ChatMemoryConfigRepository;
+    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
 
     @Override
     public Long handle(CountChatMemoryConfigQuery query) {
 
-        return ChatMemoryConfigRepository.countByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
+        return chatMemoryConfigRepository.countByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
     }
 
     @Override

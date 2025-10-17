@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class PageChatMemoryConfigQueryHandler implements IQueryHandler<PageChatMemoryConfigQuery, PageDTO<ChatMemoryConfigDTO>> {
 
-    private final IChatMemoryConfigRepository ChatMemoryConfigRepository;
+    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
 
     @Override
     public PageDTO<ChatMemoryConfigDTO> handle(PageChatMemoryConfigQuery query) {
 
-        return ChatMemoryConfigRepository.pageByConfigNameAndChatMemoryType(query.getCurrent(), query.getSize(), query.getConfigName(), query.getChatMemoryType());
+        return chatMemoryConfigRepository.pageByConfigNameAndChatMemoryType(query.getCurrent(), query.getSize(), query.getConfigName(), query.getChatMemoryType());
     }
 
     @Override

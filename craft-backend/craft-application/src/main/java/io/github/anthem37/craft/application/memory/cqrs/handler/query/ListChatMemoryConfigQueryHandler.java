@@ -17,12 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ListChatMemoryConfigQueryHandler implements IQueryHandler<ListChatMemoryConfigQuery, List<ChatMemoryConfigDTO>> {
 
-    private final IChatMemoryConfigRepository ChatMemoryConfigRepository;
+    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
 
     @Override
     public List<ChatMemoryConfigDTO> handle(ListChatMemoryConfigQuery query) {
 
-        return ChatMemoryConfigRepository.listByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
+        return chatMemoryConfigRepository.listByConfigNameAndChatMemoryType(query.getConfigName(), query.getChatMemoryType());
     }
 
     @Override

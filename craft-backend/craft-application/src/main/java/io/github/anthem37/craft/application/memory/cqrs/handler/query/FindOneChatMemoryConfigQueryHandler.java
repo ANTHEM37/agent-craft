@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class FindOneChatMemoryConfigQueryHandler implements IQueryHandler<FindOneChatMemoryConfigQuery, ChatMemoryConfigDTO> {
 
-    private final IChatMemoryConfigRepository ChatMemoryConfigRepository;
+    private final IChatMemoryConfigRepository chatMemoryConfigRepository;
 
     @Override
     public ChatMemoryConfigDTO handle(FindOneChatMemoryConfigQuery query) {
 
-        return ChatMemoryConfigRepository.findById(query.getId());
+        return chatMemoryConfigRepository.findById(query.getId());
     }
 
     @Override

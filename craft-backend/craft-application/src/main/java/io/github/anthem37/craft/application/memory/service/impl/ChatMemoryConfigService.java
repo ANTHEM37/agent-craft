@@ -13,7 +13,7 @@ import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigServ
 import io.github.anthem37.easy.ddd.application.AbstractApplicationService;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandBus;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryBus;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/11 16:58:26
  */
-@Component
+@Service
 public class ChatMemoryConfigService extends AbstractApplicationService implements IChatMemoryConfigService {
 
     public ChatMemoryConfigService(ICommandBus commandBus, IQueryBus queryBus) {

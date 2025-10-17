@@ -13,7 +13,7 @@ import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfig
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/16 15:19:00
  */
-@Component
+@Repository
 @RequiredArgsConstructor
 public class ChatMemoryConfigRepository implements IChatMemoryConfigRepository {
 

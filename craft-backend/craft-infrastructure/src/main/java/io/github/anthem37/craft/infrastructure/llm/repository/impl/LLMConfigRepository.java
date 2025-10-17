@@ -12,7 +12,7 @@ import io.github.anthem37.craft.infrastructure.llm.converter.LLMConfigPOConverte
 import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.po.LLMConfigPO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  * @author hb28301
  * @since 2025/10/11 15:39:31
  */
-@Component
+@Repository
 @RequiredArgsConstructor
 public class LLMConfigRepository implements ILLMConfigRepository {
 
