@@ -103,7 +103,7 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
 
     /**
      * 验证聚合根的不变性
-     * 
+     *
      * @throws IllegalArgumentException 当不变性被违反时抛出
      */
     public void validateInvariants() {

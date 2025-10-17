@@ -4,11 +4,12 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
+import io.github.anthem37.craft.application.llm.assembler.LLMConfigDTOAssembler;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
-import io.github.anthem37.craft.infrastructure.llm.converter.LLMConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.llm.assembler.LLMConfigPersistenceAssembler;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.po.LLMConfigPO;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class LLMConfigQueryRepository implements ILLMConfigQueryRepository {
     public LLMConfigDTO findById(Long id) {
         LLMConfigPO po = new LambdaQueryChainWrapper<>(llmConfigMapper).eq(LLMConfigPO::getId, id).one();
 
-        return LLMConfigPOConverter.INSTANCE.toDTO(po);
+        return LLMConfigDTOAssembler.INSTANCE.toDTO(LLMConfigPersistenceAssembler.INSTANCE.toDomain(po));
     }
 
     @Override
@@ -45,7 +46,7 @@ public class LLMConfigQueryRepository implements ILLMConfigQueryRepository {
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
-                .map(LLMConfigPOConverter.INSTANCE::toDTO)
+                .map(po -> LLMConfigDTOAssembler.INSTANCE.toDTO(LLMConfigPersistenceAssembler.INSTANCE.toDomain(po)))
                 .toList();
     }
 
@@ -69,7 +70,9 @@ public class LLMConfigQueryRepository implements ILLMConfigQueryRepository {
                 .page(new Page<>(current, size));
 
         return PageDTO.of(page.getCurrent(), page.getSize(), page.getTotal(),
-                page.getRecords().stream().map(LLMConfigPOConverter.INSTANCE::toDTO).toList());
+                page.getRecords().stream()
+                        .map(po -> LLMConfigDTOAssembler.INSTANCE.toDTO(LLMConfigPersistenceAssembler.INSTANCE.toDomain(po)))
+                        .toList());
     }
 
 }

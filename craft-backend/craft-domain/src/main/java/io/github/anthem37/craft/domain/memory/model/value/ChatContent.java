@@ -32,6 +32,13 @@ public class ChatContent implements IValueObject {
      */
     private List<ChatMessageData> messages;
 
+    public static ChatContent fromLangChain4jChatMessages(List<ChatMessage> messages) {
+        if (CollectionUtil.isEmpty(messages)) {
+            return new ChatContent();
+        }
+        return new ChatContent(messages.stream().map(message -> new ChatMessageData(message.type(), JSONUtil.toJsonStr(message))).toList());
+    }
+
     /**
      * 转换为LangChain4j的ChatMessage列表
      *
@@ -71,12 +78,5 @@ public class ChatContent implements IValueObject {
 
             return JSONUtil.toBean(content, type.messageClass());
         }
-    }
-
-    public static ChatContent fromLangChain4jChatMessages(List<ChatMessage> messages) {
-        if (CollectionUtil.isEmpty(messages)) {
-            return new ChatContent();
-        }
-        return new ChatContent(messages.stream().map(message -> new ChatMessageData(message.type(), JSONUtil.toJsonStr(message))).toList());
     }
 }

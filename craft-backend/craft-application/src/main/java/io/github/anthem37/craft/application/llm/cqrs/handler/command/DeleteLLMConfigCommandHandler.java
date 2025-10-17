@@ -26,12 +26,12 @@ public class DeleteLLMConfigCommandHandler implements ICommandHandler<DeleteLLMC
         if (llmConfigOptional.isEmpty()) {
             return true; // 幂等性：如果不存在则认为删除成功
         }
-        
+
         LLMConfig llmConfig = llmConfigOptional.get();
-        
+
         // 可以在这里添加删除前的业务规则验证
         // 例如：检查是否有其他实体依赖此配置
-        
+
         // 执行删除操作
         llmConfigDomainRepository.remove(llmConfig);
         return true;

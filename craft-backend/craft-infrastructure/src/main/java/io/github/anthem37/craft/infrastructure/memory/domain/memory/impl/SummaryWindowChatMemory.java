@@ -44,6 +44,13 @@ public class SummaryWindowChatMemory extends AbstractChatMemory {
         this.store = store;
     }
 
+    /**
+     * 创建构建器
+     */
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public Object id() {
         return id;
@@ -278,15 +285,8 @@ public class SummaryWindowChatMemory extends AbstractChatMemory {
             Assert.isTrue(Optional.ofNullable(maxMessages).orElse(0) > 0, "maxMessages 必须大于 0");
             Assert.notNull(chatModel, "chatModel 不能为空");
             Assert.notNull(store, "store 不能为空");
-            
+
             return new SummaryWindowChatMemory(id, maxMessages, chatModel, store);
         }
-    }
-
-    /**
-     * 创建构建器
-     */
-    public static Builder builder() {
-        return new Builder();
     }
 }

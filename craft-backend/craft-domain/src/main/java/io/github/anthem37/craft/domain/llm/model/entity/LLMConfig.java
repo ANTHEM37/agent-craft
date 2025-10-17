@@ -86,7 +86,7 @@ public class LLMConfig extends BaseAggregateRoot {
 
     /**
      * 验证聚合根的不变性
-     * 
+     *
      * @throws IllegalArgumentException 当不变性被违反时抛出
      */
     public void validateInvariants() {
@@ -118,9 +118,9 @@ public class LLMConfig extends BaseAggregateRoot {
      * 验证提供商和基础URL的一致性
      */
     private void validateProviderAndBaseUrl() {
-        Assert.isTrue(provider != LLMProvider.OPEN_AI || (baseUrl != null && !baseUrl.trim().isEmpty()), 
-            "OpenAI提供商必须设置基础URL");
-        Assert.isTrue(provider != LLMProvider.DASH_SCOPE || (baseUrl != null && !baseUrl.trim().isEmpty()), 
-            "DashScope提供商必须设置基础URL");
+        Assert.isTrue(provider != LLMProvider.OPEN_AI || (baseUrl != null && !baseUrl.trim().isEmpty()),
+                "OpenAI提供商必须设置基础URL");
+        Assert.isTrue(provider != LLMProvider.DASH_SCOPE || (baseUrl != null && !baseUrl.trim().isEmpty()),
+                "DashScope提供商必须设置基础URL");
     }
 }

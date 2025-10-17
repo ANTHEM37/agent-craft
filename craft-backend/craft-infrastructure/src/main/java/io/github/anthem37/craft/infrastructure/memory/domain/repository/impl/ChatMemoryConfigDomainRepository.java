@@ -4,7 +4,7 @@ import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
-import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.memory.assembler.ChatMemoryConfigPersistenceAssembler;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
@@ -29,12 +29,12 @@ public class ChatMemoryConfigDomainRepository extends AbstractDomainRepository<C
 
     @Override
     protected Optional<ChatMemoryConfig> doFindById(Long id) {
-        return Optional.ofNullable(chatMemoryConfigMapper.selectById(id)).map(ChatMemoryConfigPOConverter.INSTANCE::toDomain);
+        return Optional.ofNullable(chatMemoryConfigMapper.selectById(id)).map(ChatMemoryConfigPersistenceAssembler.INSTANCE::toDomain);
     }
 
     @Override
     protected void doInsert(ChatMemoryConfig chatMemoryConfig) {
-        ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
+        ChatMemoryConfigPO po = ChatMemoryConfigPersistenceAssembler.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.insert(po);
         chatMemoryConfig.setId(po.getId());
         chatMemoryConfig.markAsCreated();
@@ -42,7 +42,7 @@ public class ChatMemoryConfigDomainRepository extends AbstractDomainRepository<C
 
     @Override
     protected void doUpdateById(ChatMemoryConfig chatMemoryConfig) {
-        ChatMemoryConfigPO po = ChatMemoryConfigPOConverter.INSTANCE.toPO(chatMemoryConfig);
+        ChatMemoryConfigPO po = ChatMemoryConfigPersistenceAssembler.INSTANCE.toPO(chatMemoryConfig);
         chatMemoryConfigMapper.updateById(po);
         chatMemoryConfig.markAsUpdated();
     }

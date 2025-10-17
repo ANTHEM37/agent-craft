@@ -24,8 +24,8 @@ public class RouteChatModelFactory extends AbstractChatModelFactory implements I
 
     private final List<IChatModelInnerFactory> chatModelInnerFactories;
 
-    public RouteChatModelFactory(ILLMConfigDomainRepository llmConfigDomainRepository, 
-                                List<IChatModelInnerFactory> chatModelInnerFactories) {
+    public RouteChatModelFactory(ILLMConfigDomainRepository llmConfigDomainRepository,
+                                 List<IChatModelInnerFactory> chatModelInnerFactories) {
         super(llmConfigDomainRepository);
         this.chatModelInnerFactories = chatModelInnerFactories;
     }

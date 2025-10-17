@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.application.llm.converter;
+package io.github.anthem37.craft.application.llm.assembler;
 
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
 import io.github.anthem37.craft.application.llm.dto.command.UpdateLLMConfigCommand;
@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
  * @since 2025/10/11 15:46:24
  */
 @Mapper
-public interface LLMConfigCommandConverter {
+public interface LLMConfigCommandAssembler {
 
-    LLMConfigCommandConverter INSTANCE = Mappers.getMapper(LLMConfigCommandConverter.class);
+    LLMConfigCommandAssembler INSTANCE = Mappers.getMapper(LLMConfigCommandAssembler.class);
 
     LLMConfig toDomain(CreateLLMConfigCommand command);
 

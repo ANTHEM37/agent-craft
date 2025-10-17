@@ -28,12 +28,12 @@ public class DeleteChatMemoryConfigCommandHandler implements ICommandHandler<Del
         if (chatMemoryConfigOptional.isEmpty()) {
             return true; // 幂等性：如果不存在则认为删除成功
         }
-        
+
         ChatMemoryConfig chatMemoryConfig = chatMemoryConfigOptional.get();
-        
+
         // 可以在这里添加删除前的业务规则验证
         // 例如：检查是否有绑定的记忆实例需要先解绑
-        
+
         // 执行删除操作
         ChatMemoryConfigDomainRepository.remove(chatMemoryConfig);
         return true;

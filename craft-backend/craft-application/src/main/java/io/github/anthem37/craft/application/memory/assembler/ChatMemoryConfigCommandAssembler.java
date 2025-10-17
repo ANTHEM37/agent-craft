@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.application.memory.converter;
+package io.github.anthem37.craft.application.memory.assembler;
 
 import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
 import io.github.anthem37.craft.application.memory.dto.command.UpdateChatMemoryConfigCommand;
@@ -11,9 +11,9 @@ import org.mapstruct.factory.Mappers;
  * @since 2025/10/11 15:46:24
  */
 @Mapper
-public interface ChatMemoryConfigCommandConverter {
+public interface ChatMemoryConfigCommandAssembler {
 
-    ChatMemoryConfigCommandConverter INSTANCE = Mappers.getMapper(ChatMemoryConfigCommandConverter.class);
+    ChatMemoryConfigCommandAssembler INSTANCE = Mappers.getMapper(ChatMemoryConfigCommandAssembler.class);
 
 
     ChatMemoryConfig toDomain(CreateChatMemoryConfigCommand command);

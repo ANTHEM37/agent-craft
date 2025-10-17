@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "redis.chat-memory-store")
 public class RedisChatMemoryStoreConfig {
-    
+
     /**
      * 初始过期时间（秒）
      */

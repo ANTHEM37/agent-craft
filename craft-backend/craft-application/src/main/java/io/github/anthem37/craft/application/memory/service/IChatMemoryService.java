@@ -6,12 +6,12 @@ import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryC
 /**
  * 聊天记忆创建服务接口
  * 负责协调ChatMemory的创建和绑定流程
- * 
+ *
  * @author hb28301
  * @since 2025/01/15
  */
 public interface IChatMemoryService {
-    
+
     /**
      * 创建聊天记忆实例
      * 该方法会：
@@ -19,7 +19,7 @@ public interface IChatMemoryService {
      * 2. 生成唯一的memoryId
      * 3. 调用领域服务进行绑定
      * 4. 调用工厂创建ChatMemory实例
-     * 
+     *
      * @param command 创建聊天记忆命令
      * @return 创建的聊天记忆实例
      */

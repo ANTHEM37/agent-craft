@@ -127,7 +127,7 @@ public class ExtraInfo implements IValueObject {
 
     /**
      * 验证业务规则
-     * 
+     *
      * @throws IllegalArgumentException 当参数不符合业务规则时抛出
      */
     public void validate() {
@@ -144,8 +144,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validateTemperature() {
         if (temperature != null) {
-            Assert.isTrue(temperature >= 0.0 && temperature <= 2.0, 
-                "temperature参数必须在0.0-2.0范围内，当前值: " + temperature);
+            Assert.isTrue(temperature >= 0.0 && temperature <= 2.0,
+                    "temperature参数必须在0.0-2.0范围内，当前值: " + temperature);
         }
     }
 
@@ -154,8 +154,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validateTopP() {
         if (topP != null) {
-            Assert.isTrue(topP >= 0.0 && topP <= 1.0, 
-                "topP参数必须在0.0-1.0范围内，当前值: " + topP);
+            Assert.isTrue(topP >= 0.0 && topP <= 1.0,
+                    "topP参数必须在0.0-1.0范围内，当前值: " + topP);
         }
     }
 
@@ -164,8 +164,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validateTopK() {
         if (topK != null) {
-            Assert.isTrue(topK >= 1 && topK <= 100, 
-                "topK参数必须在1-100范围内，当前值: " + topK);
+            Assert.isTrue(topK >= 1 && topK <= 100,
+                    "topK参数必须在1-100范围内，当前值: " + topK);
         }
     }
 
@@ -174,8 +174,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validateFrequencyPenalty() {
         if (frequencyPenalty != null) {
-            Assert.isTrue(frequencyPenalty >= -2.0 && frequencyPenalty <= 2.0, 
-                "frequencyPenalty参数必须在-2.0-2.0范围内，当前值: " + frequencyPenalty);
+            Assert.isTrue(frequencyPenalty >= -2.0 && frequencyPenalty <= 2.0,
+                    "frequencyPenalty参数必须在-2.0-2.0范围内，当前值: " + frequencyPenalty);
         }
     }
 
@@ -184,8 +184,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validatePresencePenalty() {
         if (presencePenalty != null) {
-            Assert.isTrue(presencePenalty >= -2.0 && presencePenalty <= 2.0, 
-                "presencePenalty参数必须在-2.0-2.0范围内，当前值: " + presencePenalty);
+            Assert.isTrue(presencePenalty >= -2.0 && presencePenalty <= 2.0,
+                    "presencePenalty参数必须在-2.0-2.0范围内，当前值: " + presencePenalty);
         }
     }
 
@@ -194,8 +194,8 @@ public class ExtraInfo implements IValueObject {
      */
     private void validateMaxOutputTokens() {
         if (maxOutputTokens != null) {
-            Assert.isTrue(maxOutputTokens >= 1 && maxOutputTokens <= 8192, 
-                "maxOutputTokens参数必须在1-8192范围内，当前值: " + maxOutputTokens);
+            Assert.isTrue(maxOutputTokens >= 1 && maxOutputTokens <= 8192,
+                    "maxOutputTokens参数必须在1-8192范围内，当前值: " + maxOutputTokens);
         }
     }
 }

@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 /**
  * 聊天记忆工厂实现
  * 专注于ChatMemory对象的创建和组装，不包含业务逻辑
- * 
+ *
  * @author hb28301
  * @since 2025/10/14 13:35:43
  */
@@ -37,17 +37,17 @@ public class ChatMemoryFactory implements IChatMemoryFactory {
         ChatMemoryConfigParams params = memoryConfig.getParams();
         ChatMemoryStoreType chatMemoryStoreType = params.getChatMemoryStoreType();
         ChatMemoryStore chatMemoryStore = chatMemoryStoreFactory.createChatMemoryStore(chatMemoryStoreType);
-        
+
         switch (chatMemoryType) {
             case MESSAGE_WINDOW: {
                 ChatMemoryConfigParams.MessageWindowParams messageWindowParams = memoryConfig.parseParams(ChatMemoryConfigParams.MessageWindowParams.class);
                 Integer maxMessages = messageWindowParams.getMaxMessages();
 
                 return MessageWindowChatMemory.builder()
-                    .id(memoryId)
-                    .maxMessages(maxMessages)
-                    .chatMemoryStore(chatMemoryStore)
-                    .build();
+                        .id(memoryId)
+                        .maxMessages(maxMessages)
+                        .chatMemoryStore(chatMemoryStore)
+                        .build();
             }
 
             case TOKEN_WINDOW: {
@@ -56,25 +56,25 @@ public class ChatMemoryFactory implements IChatMemoryFactory {
                 Long llmConfigId = tokenWindowParams.getLlmConfigId();
 
                 return TokenWindowChatMemory.builder()
-                    .id(memoryId)
-                    .maxTokens(maxTokens, tokenCountEstimatorFactory.createTokenCountEstimator(llmConfigId))
-                    .chatMemoryStore(chatMemoryStore)
-                    .build();
+                        .id(memoryId)
+                        .maxTokens(maxTokens, tokenCountEstimatorFactory.createTokenCountEstimator(llmConfigId))
+                        .chatMemoryStore(chatMemoryStore)
+                        .build();
             }
-            
+
             case SUMMARY_WINDOW: {
                 ChatMemoryConfigParams.SummaryWindowParams summaryWindowParams = memoryConfig.parseParams(ChatMemoryConfigParams.SummaryWindowParams.class);
                 Integer maxMessages = summaryWindowParams.getMaxMessages();
                 Long llmConfigId = summaryWindowParams.getLlmConfigId();
 
                 return SummaryWindowChatMemory.builder()
-                    .id(memoryId)
-                    .maxMessages(maxMessages)
-                    .chatModel(chatModelFactory.createChatModel(llmConfigId))
-                    .chatMemoryStore(chatMemoryStore)
-                    .build();
+                        .id(memoryId)
+                        .maxMessages(maxMessages)
+                        .chatModel(chatModelFactory.createChatModel(llmConfigId))
+                        .chatMemoryStore(chatMemoryStore)
+                        .build();
             }
-            
+
             default: {
                 throw new IllegalArgumentException("未知聊天记忆类型: " + chatMemoryType);
             }

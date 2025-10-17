@@ -2,7 +2,7 @@ package io.github.anthem37.craft.infrastructure.llm.domain.repository.impl;
 
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;
-import io.github.anthem37.craft.infrastructure.llm.converter.LLMConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.llm.assembler.LLMConfigPersistenceAssembler;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.mapper.ILLMConfigMapper;
 import io.github.anthem37.craft.infrastructure.llm.mybatis.po.LLMConfigPO;
 import io.github.anthem37.easy.ddd.infrastructure.repository.AbstractDomainRepository;
@@ -25,14 +25,14 @@ public class LLMConfigDomainRepository extends AbstractDomainRepository<LLMConfi
 
     @Override
     protected Optional<LLMConfig> doFindById(Long id) {
-        LLMConfig llmConfig = LLMConfigPOConverter.INSTANCE.toDomain(llmConfigMapper.selectById(id));
+        LLMConfig llmConfig = LLMConfigPersistenceAssembler.INSTANCE.toDomain(llmConfigMapper.selectById(id));
 
         return Optional.ofNullable(llmConfig);
     }
 
     @Override
     protected void doInsert(LLMConfig aggregate) {
-        LLMConfigPO po = LLMConfigPOConverter.INSTANCE.toPO(aggregate);
+        LLMConfigPO po = LLMConfigPersistenceAssembler.INSTANCE.toPO(aggregate);
         llmConfigMapper.insert(po);
         aggregate.setId(po.getId());
         aggregate.markAsCreated();
@@ -40,14 +40,14 @@ public class LLMConfigDomainRepository extends AbstractDomainRepository<LLMConfi
 
     @Override
     protected void doUpdateById(LLMConfig aggregate) {
-        LLMConfigPO po = LLMConfigPOConverter.INSTANCE.toPO(aggregate);
+        LLMConfigPO po = LLMConfigPersistenceAssembler.INSTANCE.toPO(aggregate);
         llmConfigMapper.updateById(po);
         aggregate.markAsUpdated();
     }
 
     @Override
     protected void doDeleteById(LLMConfig aggregate) {
-        LLMConfigPO po = LLMConfigPOConverter.INSTANCE.toPO(aggregate);
+        LLMConfigPO po = LLMConfigPersistenceAssembler.INSTANCE.toPO(aggregate);
         llmConfigMapper.deleteById(po.getId());
         aggregate.markAsDeleted();
     }

@@ -5,11 +5,12 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
+import io.github.anthem37.craft.application.memory.assembler.ChatMemoryConfigDTOAssembler;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.repository.IChatMemoryConfigQueryRepository;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
-import io.github.anthem37.craft.infrastructure.memory.converter.ChatMemoryConfigPOConverter;
+import io.github.anthem37.craft.infrastructure.memory.assembler.ChatMemoryConfigPersistenceAssembler;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,8 @@ public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRe
     @Override
     public ChatMemoryConfigDTO findById(Long id) {
 
-        return ChatMemoryConfigPOConverter.INSTANCE.toDTO(chatMemoryConfigMapper.selectById(id));
+        return ChatMemoryConfigDTOAssembler.INSTANCE.toDTO(
+                ChatMemoryConfigPersistenceAssembler.INSTANCE.toDomain(chatMemoryConfigMapper.selectById(id)));
     }
 
     @Override
@@ -42,7 +44,7 @@ public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRe
                 .orderByDesc(BasePO::getUpdatedAt)
                 .list()
                 .stream()
-                .map(ChatMemoryConfigPOConverter.INSTANCE::toDTO)
+                .map(po -> ChatMemoryConfigDTOAssembler.INSTANCE.toDTO(ChatMemoryConfigPersistenceAssembler.INSTANCE.toDomain(po)))
                 .toList();
     }
 
@@ -64,7 +66,9 @@ public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRe
                 .page(new Page<>(current, size));
 
         return PageDTO.of(page.getCurrent(), page.getSize(), page.getTotal(),
-                page.getRecords().stream().map(ChatMemoryConfigPOConverter.INSTANCE::toDTO).toList());
+                page.getRecords().stream()
+                        .map(po -> ChatMemoryConfigDTOAssembler.INSTANCE.toDTO(ChatMemoryConfigPersistenceAssembler.INSTANCE.toDomain(po)))
+                        .toList());
     }
 
 }
