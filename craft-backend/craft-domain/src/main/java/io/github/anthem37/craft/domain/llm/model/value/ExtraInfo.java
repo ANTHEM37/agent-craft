@@ -109,7 +109,7 @@ public class ExtraInfo implements IValueObject {
      * 可以是自动选择（AUTO）、Required（REQUIRED）或不使用工具（NONE）
      * 选择合适的工具选择策略可以帮助模型更有效地利用工具，从而生成更准确和有用的文本
      */
-    private ToolChoice toolChoice;
+    private ToolChoice toolChoice = ToolChoice.AUTO;
 
     /**
      * 响应格式，用于指定模型生成文本的格式

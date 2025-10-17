@@ -41,6 +41,7 @@ public class DashScopeChatModelFactory implements IChatModelInnerFactory {
                     .toolChoice(extra.getToolChoice())
                     .responseFormat(toResponseFormat(extra.getResponseFormatType()))
                     .build());
+            builder.listeners(resolveListeners(extra.getChatModelListenerNames()));
         }
 
         return builder.build();
@@ -68,6 +69,7 @@ public class DashScopeChatModelFactory implements IChatModelInnerFactory {
                     .toolChoice(extra.getToolChoice())
                     .responseFormat(toResponseFormat(extra.getResponseFormatType()))
                     .build());
+            builder.listeners(resolveListeners(extra.getChatModelListenerNames()));
         }
 
         return builder.build();
