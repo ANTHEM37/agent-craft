@@ -1,12 +1,20 @@
-package io.github.anthem37.craft.adaptor.llm.controller.dto.request.command;
+package io.github.anthem37.craft.adaptor.web.llm.request.command;
 
-import io.github.anthem37.craft.application.llm.dto.command.DeleteLLMConfigCommand;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
- * 删除LLM配置请求
- *
- * @author hb28301
- * @since 2025/10/11 17:56:04
+ * 删除LLM配置请求（Web DTO）
  */
-public class DeleteLLMConfigRequest extends DeleteLLMConfigCommand {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class DeleteLLMConfigRequest {
+
+    @NotNull(message = "ID不能为空")
+    private Long id;
 }

@@ -1,8 +1,8 @@
-package io.github.anthem37.craft.adaptor.memory.controller;
+package io.github.anthem37.craft.adaptor.web.memory.controller;
 
 import io.github.anthem37.craft.adaptor.common.dto.response.Response;
-import io.github.anthem37.craft.adaptor.memory.controller.dto.request.command.*;
-import io.github.anthem37.craft.adaptor.memory.controller.dto.request.query.*;
+import io.github.anthem37.craft.adaptor.web.memory.request.command.*;
+import io.github.anthem37.craft.adaptor.web.memory.request.query.*;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigService;
@@ -26,14 +26,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatMemoryConfigController {
 
-    private final IChatMemoryConfigService ChatMemoryConfigService;
+    private final IChatMemoryConfigService chatMemoryConfigService;
+    private final io.github.anthem37.craft.adaptor.web.memory.assembler.ChatMemoryConfigWebAssembler webAssembler;
+    private final io.github.anthem37.craft.adaptor.web.memory.assembler.ChatMemoryConfigResponseAssembler responseAssembler;
 
     /**
      * 创建配置
      */
     @PostMapping("/create")
     public Response<Boolean> create(@Valid @RequestBody CreateChatMemoryConfigRequest request) {
-        Boolean ok = ChatMemoryConfigService.create(request);
+        Boolean ok = chatMemoryConfigService.create(webAssembler.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "创建失败");
     }
 
@@ -42,7 +44,7 @@ public class ChatMemoryConfigController {
      */
     @PostMapping("/update")
     public Response<Boolean> update(@Valid @RequestBody UpdateChatMemoryConfigRequest request) {
-        Boolean ok = ChatMemoryConfigService.update(request);
+        Boolean ok = chatMemoryConfigService.update(webAssembler.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "更新失败");
     }
 
@@ -51,7 +53,7 @@ public class ChatMemoryConfigController {
      */
     @PostMapping("/delete")
     public Response<Boolean> delete(@Valid @RequestBody DeleteChatMemoryConfigRequest request) {
-        Boolean ok = ChatMemoryConfigService.delete(request);
+        Boolean ok = chatMemoryConfigService.delete(webAssembler.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "删除失败");
     }
 
@@ -59,17 +61,17 @@ public class ChatMemoryConfigController {
      * 查询单个配置
      */
     @PostMapping("/findOne")
-    public Response<ChatMemoryConfigDTO> findOne(@Valid @RequestBody FindOneChatMemoryConfigRequest request) {
-        ChatMemoryConfigDTO dto = ChatMemoryConfigService.findOne(request);
-        return Response.ok(dto);
+    public Response<io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse> findOne(@Valid @RequestBody FindOneChatMemoryConfigRequest request) {
+        io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse resp = responseAssembler.toResponse(chatMemoryConfigService.findOne(webAssembler.toQuery(request)));
+        return Response.ok(resp);
     }
 
     /**
      * 列表查询
      */
     @PostMapping("/list")
-    public Response<List<ChatMemoryConfigDTO>> list(@Valid @RequestBody ListChatMemoryConfigRequest request) {
-        List<ChatMemoryConfigDTO> list = ChatMemoryConfigService.list(request);
+    public Response<List<io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse>> list(@Valid @RequestBody ListChatMemoryConfigRequest request) {
+        List<io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse> list = responseAssembler.toResponseList(chatMemoryConfigService.list(webAssembler.toQuery(request)));
         return Response.ok(list);
     }
 
@@ -78,7 +80,7 @@ public class ChatMemoryConfigController {
      */
     @PostMapping("/count")
     public Response<Long> count(@Valid @RequestBody CountChatMemoryConfigRequest request) {
-        Long count = ChatMemoryConfigService.count(request);
+        Long count = chatMemoryConfigService.count(webAssembler.toQuery(request));
         return Response.ok(count);
     }
 
@@ -86,8 +88,8 @@ public class ChatMemoryConfigController {
      * 分页查询
      */
     @PostMapping("/page")
-    public Response<PageDTO<ChatMemoryConfigDTO>> page(@Valid @RequestBody PageChatMemoryConfigRequest request) {
-        PageDTO<ChatMemoryConfigDTO> page = ChatMemoryConfigService.page(request);
+    public Response<PageDTO<io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse>> page(@Valid @RequestBody PageChatMemoryConfigRequest request) {
+        PageDTO<io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResponse> page = responseAssembler.toResponsePage(chatMemoryConfigService.page(webAssembler.toQuery(request)));
         return Response.ok(page);
     }
 }

@@ -1,12 +1,23 @@
-package io.github.anthem37.craft.adaptor.llm.controller.dto.request.query;
+package io.github.anthem37.craft.adaptor.web.llm.request.query;
 
-import io.github.anthem37.craft.application.llm.dto.query.ListLLMConfigQuery;
+import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
- * 查询LLM配置列表请求
- *
- * @author hb28301
- * @since 2025/10/11 17:56:37
+ * 列表查询LLM配置请求（Web DTO）
  */
-public class ListLLMConfigRequest extends ListLLMConfigQuery {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class ListLLMConfigRequest {
+
+    private String configName;
+
+    private LLMProvider provider;
+
+    private String modelName;
 }

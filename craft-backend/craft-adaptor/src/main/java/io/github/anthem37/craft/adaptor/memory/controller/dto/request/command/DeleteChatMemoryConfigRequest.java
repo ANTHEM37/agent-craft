@@ -1,13 +1,20 @@
-package io.github.anthem37.craft.adaptor.memory.controller.dto.request.command;
+package io.github.anthem37.craft.adaptor.web.memory.request.command;
 
-
-import io.github.anthem37.craft.application.memory.dto.command.DeleteChatMemoryConfigCommand;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
- * 删除记忆配置请求
- *
- * @author hb28301
- * @since 2025/10/11 17:56:04
+ * 删除记忆配置请求（Web DTO）
  */
-public class DeleteChatMemoryConfigRequest extends DeleteChatMemoryConfigCommand {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class DeleteChatMemoryConfigRequest {
+
+    @NotNull(message = "ID不能为空")
+    private Long id;
 }

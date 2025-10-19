@@ -1,12 +1,20 @@
-package io.github.anthem37.craft.adaptor.llm.controller.dto.request.query;
+package io.github.anthem37.craft.adaptor.web.llm.request.query;
 
-import io.github.anthem37.craft.application.llm.dto.query.FindOneLLMConfigQuery;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
- * 查询单个LLM配置请求
- *
- * @author hb28301
- * @since 2025/10/11 17:56:19
+ * 查询单个LLM配置请求（Web DTO）
  */
-public class FindOneLLMConfigRequest extends FindOneLLMConfigQuery {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class FindOneLLMConfigRequest {
+
+    @NotNull(message = "模型配置ID不能为空")
+    private Long id;
 }

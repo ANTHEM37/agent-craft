@@ -1,13 +1,21 @@
-package io.github.anthem37.craft.adaptor.memory.controller.dto.request.query;
+package io.github.anthem37.craft.adaptor.web.memory.request.query;
 
-
-import io.github.anthem37.craft.application.memory.dto.query.CountChatMemoryConfigQuery;
+import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
- * 统计记忆配置请求
- *
- * @author hb28301
- * @since 2025/10/11 17:56:48
+ * 统计记忆配置请求（Web DTO）
  */
-public class CountChatMemoryConfigRequest extends CountChatMemoryConfigQuery {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Accessors(chain = true)
+public class CountChatMemoryConfigRequest {
+
+    private String configName;
+
+    private ChatMemoryType chatMemoryType;
 }
