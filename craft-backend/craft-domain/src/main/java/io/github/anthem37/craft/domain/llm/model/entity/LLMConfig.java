@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.domain.llm.model.entity;
 
-import io.github.anthem37.craft.domain.common.model.entity.BaseAggregateRoot;
+import io.github.anthem37.craft.domain.sharedkernel.model.entity.BaseAggregateRoot;
 import io.github.anthem37.craft.domain.llm.event.CreatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.DeletedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.UpdatedLLMConfigEvent;

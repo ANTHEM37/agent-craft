@@ -1,4 +1,4 @@
-package io.github.anthem37.craft.domain.common.model.entity;
+package io.github.anthem37.craft.domain.sharedkernel.model.entity;
 
 import io.github.anthem37.easy.ddd.domain.model.AbstractAggregateRoot;
 import lombok.AllArgsConstructor;
