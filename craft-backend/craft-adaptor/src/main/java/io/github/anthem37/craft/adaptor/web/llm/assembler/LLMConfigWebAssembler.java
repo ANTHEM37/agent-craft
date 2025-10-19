@@ -24,12 +24,17 @@ public interface LLMConfigWebAssembler {
 
     // command mappings
     CreateLLMConfigCommand toCommand(CreateLLMConfigRequest request);
+
     UpdateLLMConfigCommand toCommand(UpdateLLMConfigRequest request);
+
     DeleteLLMConfigCommand toCommand(DeleteLLMConfigRequest request);
 
     // query mappings
     FindOneLLMConfigQuery toQuery(FindOneLLMConfigRequest request);
+
     ListLLMConfigQuery toQuery(ListLLMConfigRequest request);
+
     PageLLMConfigQuery toQuery(PageLLMConfigRequest request);
+
     CountLLMConfigQuery toQuery(CountLLMConfigRequest request);
 }

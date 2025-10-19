@@ -29,12 +29,17 @@ public interface ChatMemoryConfigWebAssembler {
 
     // command mappings
     CreateChatMemoryConfigCommand toCommand(CreateChatMemoryConfigRequest request);
+
     UpdateChatMemoryConfigCommand toCommand(UpdateChatMemoryConfigRequest request);
+
     DeleteChatMemoryConfigCommand toCommand(DeleteChatMemoryConfigRequest request);
 
     // query mappings
     FindOneChatMemoryConfigQuery toQuery(FindOneChatMemoryConfigRequest request);
+
     ListChatMemoryConfigQuery toQuery(ListChatMemoryConfigRequest request);
+
     PageChatMemoryConfigQuery toQuery(PageChatMemoryConfigRequest request);
+
     CountChatMemoryConfigQuery toQuery(CountChatMemoryConfigRequest request);
 }

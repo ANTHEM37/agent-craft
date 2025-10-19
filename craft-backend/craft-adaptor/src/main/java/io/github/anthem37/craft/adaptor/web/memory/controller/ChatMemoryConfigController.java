@@ -1,10 +1,14 @@
 package io.github.anthem37.craft.adaptor.web.memory.controller;
 
 import io.github.anthem37.craft.adaptor.common.dto.response.Response;
-import io.github.anthem37.craft.adaptor.web.memory.request.command.*;
-import io.github.anthem37.craft.adaptor.web.memory.request.query.*;
+import io.github.anthem37.craft.adaptor.web.memory.request.command.CreateChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.command.DeleteChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.command.UpdateChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.query.CountChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.query.FindOneChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.query.ListChatMemoryConfigRequest;
+import io.github.anthem37.craft.adaptor.web.memory.request.query.PageChatMemoryConfigRequest;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
-import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
