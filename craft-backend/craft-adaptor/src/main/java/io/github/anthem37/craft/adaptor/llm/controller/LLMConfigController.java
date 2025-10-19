@@ -1,7 +1,8 @@
 package io.github.anthem37.craft.adaptor.llm.controller;
 
 import io.github.anthem37.craft.adaptor.common.dto.response.Response;
-import io.github.anthem37.craft.adaptor.llm.controller.dto.request.*;
+import io.github.anthem37.craft.adaptor.llm.controller.dto.request.command.*;
+import io.github.anthem37.craft.adaptor.llm.controller.dto.request.query.*;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import io.github.anthem37.craft.application.llm.service.ILLMConfigService;

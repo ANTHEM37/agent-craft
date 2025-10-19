@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.application.llm.cqrs.handler.command;
 
-import io.github.anthem37.craft.application.llm.assembler.LLMConfigCommandAssembler;
+import io.github.anthem37.craft.application.llm.assembler.command.LLMConfigCommandAssembler;
 import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import io.github.anthem37.craft.domain.llm.repository.ILLMConfigDomainRepository;

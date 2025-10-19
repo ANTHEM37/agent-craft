@@ -1,6 +1,6 @@
 package io.github.anthem37.craft.application.memory.cqrs.handler.command;
 
-import io.github.anthem37.craft.application.memory.assembler.ChatMemoryConfigCommandAssembler;
+import io.github.anthem37.craft.application.memory.assembler.command.ChatMemoryConfigCommandAssembler;
 import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
