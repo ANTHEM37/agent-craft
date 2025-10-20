@@ -10,8 +10,6 @@ import io.github.anthem37.craft.application.memory.cqrs.query.ListChatMemoryConf
 import io.github.anthem37.craft.application.memory.cqrs.query.PageChatMemoryConfigQuery;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigService;
-import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
-import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.easy.ddd.application.AbstractApplicationService;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandBus;
 import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryBus;
@@ -29,11 +27,9 @@ import java.util.List;
 @Service
 public class ChatMemoryConfigService extends AbstractApplicationService implements IChatMemoryConfigService {
 
-    private final IChatMemoryConfigDomainRepository domainRepository;
 
-    public ChatMemoryConfigService(ICommandBus commandBus, IQueryBus queryBus, IChatMemoryConfigDomainRepository domainRepository) {
+    public ChatMemoryConfigService(ICommandBus commandBus, IQueryBus queryBus) {
         super(commandBus, queryBus);
-        this.domainRepository = domainRepository;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -72,27 +68,5 @@ public class ChatMemoryConfigService extends AbstractApplicationService implemen
     @Override
     public PageDTO<ChatMemoryConfigDTO> page(PageChatMemoryConfigQuery query) {
         return sendQuery(query);
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void bindMemory(Long configId, Long memoryId) {
-        ChatMemoryConfig chatMemoryConfig = domainRepository.findById(configId)
-                .orElseThrow(() -> new IllegalArgumentException("ChatMemoryConfig not found"));
-
-        chatMemoryConfig.markAsBindMemory(memoryId);
-
-        domainRepository.save(chatMemoryConfig);
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void unbindMemory(Long configId, Long memoryId) {
-        ChatMemoryConfig chatMemoryConfig = domainRepository.findById(configId)
-                .orElseThrow(() -> new IllegalArgumentException("ChatMemoryConfig not found"));
-
-        chatMemoryConfig.markAsUnbindMemory(memoryId);
-
-        domainRepository.save(chatMemoryConfig);
     }
 }
