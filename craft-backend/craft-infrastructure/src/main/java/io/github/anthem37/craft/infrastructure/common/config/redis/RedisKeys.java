@@ -4,7 +4,7 @@ package io.github.anthem37.craft.infrastructure.common.config.redis;
  * Redis 键名
  *
  * @author hb28301
- * @date 2025/10/17 11:38:55
+ * @since 2025/10/17 11:38:55
  */
 public class RedisKeys {
 

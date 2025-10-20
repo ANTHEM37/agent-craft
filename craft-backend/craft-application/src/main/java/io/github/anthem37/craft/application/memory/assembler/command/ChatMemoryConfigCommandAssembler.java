@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.application.memory.assembler.command;
 
-import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
-import io.github.anthem37.craft.application.memory.dto.command.UpdateChatMemoryConfigCommand;
+import io.github.anthem37.craft.application.memory.cqrs.command.CreateChatMemoryConfigCommand;
+import io.github.anthem37.craft.application.memory.cqrs.command.UpdateChatMemoryConfigCommand;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

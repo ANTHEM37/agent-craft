@@ -1,10 +1,10 @@
 package io.github.anthem37.craft.domain.memory.model.entity;
 
 import cn.hutool.json.JSONUtil;
-import io.github.anthem37.craft.domain.sharedkernel.model.entity.BaseAggregateRoot;
 import io.github.anthem37.craft.domain.memory.event.*;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryConfigParams;
 import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
+import io.github.anthem37.craft.domain.sharedkernel.model.entity.BaseAggregateRoot;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -78,10 +78,6 @@ public class ChatMemoryConfig extends BaseAggregateRoot {
     public void markAsDeleted() {
         addDomainEvent(new DeletedChatMemoryConfigEvent(this));
     }
-
-    /**
-     * 标记为已经绑定记忆，触发 DeletedChatMemoryConfigEvent 事件
-     */
 
     /**
      * 标记为已经绑定记忆，触发 BindMemoryChatMemoryConfigEvent 事件

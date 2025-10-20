@@ -1,13 +1,10 @@
 package io.github.anthem37.craft.adaptor.web.llm.controller;
 
 import io.github.anthem37.craft.adaptor.common.dto.response.Response;
-import io.github.anthem37.craft.adaptor.web.llm.request.command.CreateLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.command.DeleteLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.command.UpdateLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.query.CountLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.query.FindOneLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.query.ListLLMConfigRequest;
-import io.github.anthem37.craft.adaptor.web.llm.request.query.PageLLMConfigRequest;
+import io.github.anthem37.craft.adaptor.web.llm.assembler.LLMConfigResponseAssembler;
+import io.github.anthem37.craft.adaptor.web.llm.assembler.LLMConfigWebAssembler;
+import io.github.anthem37.craft.adaptor.web.llm.request.*;
+import io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.service.ILLMConfigService;
 import jakarta.validation.Valid;
@@ -31,15 +28,13 @@ import java.util.List;
 public class LLMConfigController {
 
     private final ILLMConfigService llmConfigService;
-    private final io.github.anthem37.craft.adaptor.web.llm.assembler.LLMConfigWebAssembler webAssembler;
-    private final io.github.anthem37.craft.adaptor.web.llm.assembler.LLMConfigResponseAssembler responseAssembler;
 
     /**
      * 创建配置
      */
     @PostMapping("/create")
     public Response<Boolean> create(@Valid @RequestBody CreateLLMConfigRequest request) {
-        Boolean ok = llmConfigService.create(webAssembler.toCommand(request));
+        Boolean ok = llmConfigService.create(LLMConfigWebAssembler.INSTANCE.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "创建失败");
     }
 
@@ -48,7 +43,7 @@ public class LLMConfigController {
      */
     @PostMapping("/update")
     public Response<Boolean> update(@Valid @RequestBody UpdateLLMConfigRequest request) {
-        Boolean ok = llmConfigService.update(webAssembler.toCommand(request));
+        Boolean ok = llmConfigService.update(LLMConfigWebAssembler.INSTANCE.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "更新失败");
     }
 
@@ -57,7 +52,7 @@ public class LLMConfigController {
      */
     @PostMapping("/delete")
     public Response<Boolean> delete(@Valid @RequestBody DeleteLLMConfigRequest request) {
-        Boolean ok = llmConfigService.delete(webAssembler.toCommand(request));
+        Boolean ok = llmConfigService.delete(LLMConfigWebAssembler.INSTANCE.toCommand(request));
         return ok ? Response.ok(ok) : Response.fail(1, "删除失败");
     }
 
@@ -65,8 +60,8 @@ public class LLMConfigController {
      * 查询单个配置
      */
     @PostMapping("/findOne")
-    public Response<io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse> findOne(@Valid @RequestBody FindOneLLMConfigRequest request) {
-        io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse resp = responseAssembler.toResponse(llmConfigService.findOne(webAssembler.toQuery(request)));
+    public Response<LLMConfigResponse> findOne(@Valid @RequestBody FindOneLLMConfigRequest request) {
+        LLMConfigResponse resp = LLMConfigResponseAssembler.INSTANCE.toResponse(llmConfigService.findOne(LLMConfigWebAssembler.INSTANCE.toQuery(request)));
         return Response.ok(resp);
     }
 
@@ -74,8 +69,8 @@ public class LLMConfigController {
      * 列表查询
      */
     @PostMapping("/list")
-    public Response<List<io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse>> list(@Valid @RequestBody ListLLMConfigRequest request) {
-        List<io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse> list = responseAssembler.toResponseList(llmConfigService.list(webAssembler.toQuery(request)));
+    public Response<List<LLMConfigResponse>> list(@Valid @RequestBody ListLLMConfigRequest request) {
+        List<LLMConfigResponse> list = LLMConfigResponseAssembler.INSTANCE.toResponseList(llmConfigService.list(LLMConfigWebAssembler.INSTANCE.toQuery(request)));
         return Response.ok(list);
     }
 
@@ -84,7 +79,7 @@ public class LLMConfigController {
      */
     @PostMapping("/count")
     public Response<Long> count(@Valid @RequestBody CountLLMConfigRequest request) {
-        Long count = llmConfigService.count(webAssembler.toQuery(request));
+        Long count = llmConfigService.count(LLMConfigWebAssembler.INSTANCE.toQuery(request));
         return Response.ok(count);
     }
 
@@ -92,8 +87,8 @@ public class LLMConfigController {
      * 分页查询
      */
     @PostMapping("/page")
-    public Response<PageDTO<io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse>> page(@Valid @RequestBody PageLLMConfigRequest request) {
-        PageDTO<io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse> page = responseAssembler.toResponsePage(llmConfigService.page(webAssembler.toQuery(request)));
+    public Response<PageDTO<LLMConfigResponse>> page(@Valid @RequestBody PageLLMConfigRequest request) {
+        PageDTO<LLMConfigResponse> page = LLMConfigResponseAssembler.INSTANCE.toResponsePage(llmConfigService.page(LLMConfigWebAssembler.INSTANCE.toQuery(request)));
         return Response.ok(page);
     }
 }

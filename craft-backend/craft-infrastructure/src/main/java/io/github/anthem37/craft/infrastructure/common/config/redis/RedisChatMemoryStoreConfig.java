@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author hb28301
- * @date 2025/10/17 11:44:20
+ * @since 2025/10/17 11:44:20
  */
 @Data
 @Configuration

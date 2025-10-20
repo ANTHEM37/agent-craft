@@ -19,7 +19,7 @@ import java.util.Optional;
  * 当消息数量超过阈值时，会对历史消息进行摘要压缩，但保留最新的用户消息不被压缩
  *
  * @author hb28301
- * @date 2025/10/17 13:35:47
+ * @since 2025/10/17 13:35:47
  */
 @Slf4j
 public class SummaryWindowChatMemory extends AbstractChatMemory {

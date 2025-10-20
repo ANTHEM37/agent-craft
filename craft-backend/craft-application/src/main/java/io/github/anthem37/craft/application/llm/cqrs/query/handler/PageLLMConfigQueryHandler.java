@@ -1,0 +1,31 @@
+package io.github.anthem37.craft.application.llm.cqrs.query.handler;
+
+import io.github.anthem37.craft.application.common.dto.PageDTO;
+import io.github.anthem37.craft.application.llm.cqrs.query.PageLLMConfigQuery;
+import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
+import io.github.anthem37.craft.application.llm.repository.ILLMConfigQueryRepository;
+import io.github.anthem37.easy.ddd.common.cqrs.query.IQueryHandler;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+/**
+ * @author hb28301
+ * @since 2025/10/11 17:16:04
+ */
+@Component
+@RequiredArgsConstructor
+public class PageLLMConfigQueryHandler implements IQueryHandler<PageLLMConfigQuery, PageDTO<LLMConfigDTO>> {
+
+    private final ILLMConfigQueryRepository llmConfigQueryRepository;
+
+    @Override
+    public PageDTO<LLMConfigDTO> handle(PageLLMConfigQuery query) {
+
+        return llmConfigQueryRepository.pageByModelNameAndConfigNameAndProvider(query.getCurrent(), query.getSize(), query.getModelName(), query.getConfigName(), query.getProvider());
+    }
+
+    @Override
+    public Class<PageLLMConfigQuery> getSupportedQueryType() {
+        return PageLLMConfigQuery.class;
+    }
+}

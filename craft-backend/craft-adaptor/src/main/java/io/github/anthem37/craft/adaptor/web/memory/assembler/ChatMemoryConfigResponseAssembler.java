@@ -4,12 +4,16 @@ import io.github.anthem37.craft.adaptor.web.memory.response.ChatMemoryConfigResp
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+/**
+ * @author hb28301
+ */
+@Mapper
 public interface ChatMemoryConfigResponseAssembler {
+
+    ChatMemoryConfigResponseAssembler INSTANCE = org.mapstruct.factory.Mappers.getMapper(ChatMemoryConfigResponseAssembler.class);
 
     ChatMemoryConfigResponse toResponse(ChatMemoryConfigDTO dto);
 

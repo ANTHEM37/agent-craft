@@ -1,11 +1,11 @@
 package io.github.anthem37.craft.domain.llm.model.entity;
 
-import io.github.anthem37.craft.domain.sharedkernel.model.entity.BaseAggregateRoot;
 import io.github.anthem37.craft.domain.llm.event.CreatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.DeletedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.event.UpdatedLLMConfigEvent;
 import io.github.anthem37.craft.domain.llm.model.value.ExtraInfo;
 import io.github.anthem37.craft.domain.llm.model.value.LLMProvider;
+import io.github.anthem37.craft.domain.sharedkernel.model.entity.BaseAggregateRoot;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

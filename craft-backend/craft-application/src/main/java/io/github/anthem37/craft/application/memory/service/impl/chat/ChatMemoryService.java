@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.application.memory.service.impl.chat;
 
 import dev.langchain4j.memory.ChatMemory;
-import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryCommand;
+import io.github.anthem37.craft.application.memory.cqrs.command.CreateChatMemoryCommand;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryService;
 import io.github.anthem37.easy.ddd.application.AbstractApplicationService;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandBus;

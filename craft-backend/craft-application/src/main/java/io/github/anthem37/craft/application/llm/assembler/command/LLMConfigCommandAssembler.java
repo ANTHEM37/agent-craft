@@ -1,7 +1,7 @@
 package io.github.anthem37.craft.application.llm.assembler.command;
 
-import io.github.anthem37.craft.application.llm.dto.command.CreateLLMConfigCommand;
-import io.github.anthem37.craft.application.llm.dto.command.UpdateLLMConfigCommand;
+import io.github.anthem37.craft.application.llm.cqrs.command.CreateLLMConfigCommand;
+import io.github.anthem37.craft.application.llm.cqrs.command.UpdateLLMConfigCommand;
 import io.github.anthem37.craft.domain.llm.model.entity.LLMConfig;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

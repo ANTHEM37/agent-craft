@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author hb28301
- * @date 2025/10/17 14:52:17
+ * @since 2025/10/17 14:52:17
  */
 @Data
 public class BindMemoryChatMemoryConfigEvent implements IDomainEvent {
@@ -33,10 +33,10 @@ public class BindMemoryChatMemoryConfigEvent implements IDomainEvent {
      */
     private Map<String, Object> eventData = new HashMap<>();
 
-    public BindMemoryChatMemoryConfigEvent(ChatMemoryConfig ChatMemoryConfig, Long memoryId) {
-        this.aggregateId = ChatMemoryConfig.getId();
+    public BindMemoryChatMemoryConfigEvent(ChatMemoryConfig chatMemoryConfig, Long memoryId) {
+        this.aggregateId = chatMemoryConfig.getId();
         this.memoryId = memoryId;
-        eventData.put("chatMemoryConfig", ChatMemoryConfig);
+        eventData.put("chatMemoryConfig", chatMemoryConfig);
         eventData.put("memoryId", memoryId);
     }
 }

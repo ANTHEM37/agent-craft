@@ -4,12 +4,16 @@ import io.github.anthem37.craft.adaptor.web.llm.response.LLMConfigResponse;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
 import io.github.anthem37.craft.application.llm.dto.LLMConfigDTO;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingConstants;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+/**
+ * @author hb28301
+ */
+@Mapper
 public interface LLMConfigResponseAssembler {
+    LLMConfigResponseAssembler INSTANCE = Mappers.getMapper(LLMConfigResponseAssembler.class);
 
     LLMConfigResponse toResponse(LLMConfigDTO dto);
 

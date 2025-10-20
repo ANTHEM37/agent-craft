@@ -1,14 +1,14 @@
 package io.github.anthem37.craft.application.memory.service.impl.config;
 
 import io.github.anthem37.craft.application.common.dto.PageDTO;
+import io.github.anthem37.craft.application.memory.cqrs.command.CreateChatMemoryConfigCommand;
+import io.github.anthem37.craft.application.memory.cqrs.command.DeleteChatMemoryConfigCommand;
+import io.github.anthem37.craft.application.memory.cqrs.command.UpdateChatMemoryConfigCommand;
+import io.github.anthem37.craft.application.memory.cqrs.query.CountChatMemoryConfigQuery;
+import io.github.anthem37.craft.application.memory.cqrs.query.FindOneChatMemoryConfigQuery;
+import io.github.anthem37.craft.application.memory.cqrs.query.ListChatMemoryConfigQuery;
+import io.github.anthem37.craft.application.memory.cqrs.query.PageChatMemoryConfigQuery;
 import io.github.anthem37.craft.application.memory.dto.ChatMemoryConfigDTO;
-import io.github.anthem37.craft.application.memory.dto.command.CreateChatMemoryConfigCommand;
-import io.github.anthem37.craft.application.memory.dto.command.DeleteChatMemoryConfigCommand;
-import io.github.anthem37.craft.application.memory.dto.command.UpdateChatMemoryConfigCommand;
-import io.github.anthem37.craft.application.memory.dto.query.CountChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.dto.query.FindOneChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.dto.query.ListChatMemoryConfigQuery;
-import io.github.anthem37.craft.application.memory.dto.query.PageChatMemoryConfigQuery;
 import io.github.anthem37.craft.application.memory.service.IChatMemoryConfigService;
 import io.github.anthem37.easy.ddd.application.AbstractApplicationService;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandBus;
