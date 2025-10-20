@@ -6,13 +6,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 聊天记忆领域服务配置
+ * 记忆领域服务配置
  *
  * @author hb28301
  * @since 2025/10/17 15:00:00
  */
 @Configuration
-public class ChatMemoryDomainServiceConfig {
+public class MemoryDomainServiceConfig {
 
     @Bean
     public ChatMemoryDomainService chatMemoryDomainService(IChatMemoryConfigDomainRepository chatMemoryConfigDomainRepository) {

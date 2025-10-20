@@ -51,4 +51,13 @@ public interface IChatMemoryConfigQueryRepository {
      * @return 记忆配置分页列表
      */
     PageDTO<ChatMemoryConfigDTO> pageByConfigNameAndChatMemoryType(long current, long size, String configName, ChatMemoryType chatMemoryType);
+
+    /**
+     * 检查记忆配置是否已绑定到指定记忆实例
+     *
+     * @param configId 配置ID
+     * @param memoryId 记忆ID
+     * @return 是否已绑定
+     */
+    boolean isMemoryBound(Long configId, Long memoryId);
 }

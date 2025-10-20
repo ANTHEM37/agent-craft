@@ -72,4 +72,20 @@ public interface IChatMemoryConfigService {
      * @return 记忆配置DTO分页
      */
     PageDTO<ChatMemoryConfigDTO> page(PageChatMemoryConfigQuery query);
+
+    /**
+     * 绑定记忆
+     *
+     * @param configId 配置ID
+     * @param memoryId 记忆ID
+     */
+    void bindMemory(Long configId, Long memoryId);
+
+    /**
+     * 解绑记忆
+     *
+     * @param configId 配置ID
+     * @param memoryId 记忆ID
+     */
+    void unbindMemory(Long configId, Long memoryId);
 }

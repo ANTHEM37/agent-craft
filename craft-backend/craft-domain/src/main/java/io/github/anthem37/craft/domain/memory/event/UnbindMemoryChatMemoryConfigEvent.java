@@ -39,4 +39,9 @@ public class UnbindMemoryChatMemoryConfigEvent implements IDomainEvent {
         eventData.put("chatMemoryConfig", chatMemoryConfig);
         eventData.put("memoryId", memoryId);
     }
+
+    @Override
+    public TriggeredPhase getTriggeredPhase() {
+        return TriggeredPhase.IN_PROCESS;
+    }
 }

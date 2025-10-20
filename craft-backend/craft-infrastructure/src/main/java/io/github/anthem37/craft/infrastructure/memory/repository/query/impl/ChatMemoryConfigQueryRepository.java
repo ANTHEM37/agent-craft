@@ -2,6 +2,7 @@ package io.github.anthem37.craft.infrastructure.memory.repository.query.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.anthem37.craft.application.common.dto.PageDTO;
@@ -12,7 +13,9 @@ import io.github.anthem37.craft.domain.memory.model.value.ChatMemoryType;
 import io.github.anthem37.craft.infrastructure.common.po.BasePO;
 import io.github.anthem37.craft.infrastructure.memory.assembler.persistence.ChatMemoryConfigPersistenceAssembler;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigMapper;
+import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigPO;
+import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigRefPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +30,8 @@ import java.util.List;
 public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRepository {
 
     private final IChatMemoryConfigMapper chatMemoryConfigMapper;
+
+    private final IChatMemoryConfigRefMapper chatMemoryConfigRefMapper;
 
     @Override
     public ChatMemoryConfigDTO findById(Long id) {
@@ -69,6 +74,14 @@ public class ChatMemoryConfigQueryRepository implements IChatMemoryConfigQueryRe
                 page.getRecords().stream()
                         .map(po -> ChatMemoryConfigDTOAssembler.INSTANCE.toDTO(ChatMemoryConfigPersistenceAssembler.INSTANCE.toDomain(po)))
                         .toList());
+    }
+
+    @Override
+    public boolean isMemoryBound(Long configId, Long memoryId) {
+        LambdaQueryWrapper<ChatMemoryConfigRefPO> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ChatMemoryConfigRefPO::getConfigId, configId)
+                .eq(ChatMemoryConfigRefPO::getMemoryId, memoryId);
+        return chatMemoryConfigRefMapper.selectCount(queryWrapper) > 0;
     }
 
 }
