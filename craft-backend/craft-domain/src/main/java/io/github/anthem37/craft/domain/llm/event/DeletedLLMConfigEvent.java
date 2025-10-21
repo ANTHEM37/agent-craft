@@ -12,7 +12,7 @@ import java.util.Map;
  * @since 2025/10/11 16:04:00
  */
 @Data
-public class DeletedLLMConfigEvent implements IDomainEvent {
+public class DeletedLLMConfigEvent implements IDomainEvent<Long> {
 
     /**
      * 事件类型，标识事件的名称

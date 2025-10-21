@@ -23,7 +23,7 @@
         <langchain4j-bom.version>1.7.1</langchain4j-bom.version>
         <langchain4j-community-bom.version>1.7.1-beta14</langchain4j-community-bom.version>
         <hutool-bom.version>5.8.40</hutool-bom.version>
-        <easy-ddd-bom.version>1.0.4-RELEASE</easy-ddd-bom.version>
+        <easy-ddd-bom.version>1.0.5-RELEASE</easy-ddd-bom.version>
         <mapstruct-parent.version>1.6.3</mapstruct-parent.version>
         <jakarta.validation.version>3.0.2</jakarta.validation.version>
         <maven.compiler.release>21</maven.compiler.release>

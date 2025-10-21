@@ -1,9 +1,9 @@
 package io.github.anthem37.craft.infrastructure.memory.event.listener;
 
-import io.github.anthem37.craft.domain.memory.event.BindMemoryChatMemoryConfigEvent;
+import io.github.anthem37.craft.application.memory.event.BindMemoryChatMemoryConfigEvent;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.mapper.IChatMemoryConfigRefMapper;
 import io.github.anthem37.craft.infrastructure.memory.mybatis.po.ChatMemoryConfigRefPO;
-import io.github.anthem37.easy.ddd.domain.event.IEventHandler;
+import io.github.anthem37.easy.ddd.infrastructure.event.AbstractApplicationEventHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +15,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class BindMemoryChatMemoryConfigEventListener implements IEventHandler<BindMemoryChatMemoryConfigEvent> {
+public class BindMemoryChatMemoryConfigEventListener extends AbstractApplicationEventHandler<BindMemoryChatMemoryConfigEvent> {
 
     private final IChatMemoryConfigRefMapper chatMemoryConfigRefMapper;
 
     @Override
-    public void handle(BindMemoryChatMemoryConfigEvent bindMemoryChatMemoryConfigEvent) {
+    protected void doHandle(BindMemoryChatMemoryConfigEvent bindMemoryChatMemoryConfigEvent) {
         Long memoryId = bindMemoryChatMemoryConfigEvent.getMemoryId();
         Long aggregateId = bindMemoryChatMemoryConfigEvent.getAggregateId();
         chatMemoryConfigRefMapper.insert(new ChatMemoryConfigRefPO(aggregateId, memoryId));

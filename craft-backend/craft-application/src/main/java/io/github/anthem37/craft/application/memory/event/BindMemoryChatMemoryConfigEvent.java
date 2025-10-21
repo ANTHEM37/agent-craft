@@ -1,7 +1,7 @@
-package io.github.anthem37.craft.domain.memory.event;
+package io.github.anthem37.craft.application.memory.event;
 
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
-import io.github.anthem37.easy.ddd.domain.event.IDomainEvent;
+import io.github.anthem37.easy.ddd.application.event.IApplicationEvent;
 import lombok.Data;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
  * @since 2025/10/17 14:52:17
  */
 @Data
-public class BindMemoryChatMemoryConfigEvent implements IDomainEvent {
+public class BindMemoryChatMemoryConfigEvent implements IApplicationEvent {
     /**
      * 事件类型，标识事件的名称
      */
@@ -40,8 +40,4 @@ public class BindMemoryChatMemoryConfigEvent implements IDomainEvent {
         eventData.put("memoryId", memoryId);
     }
 
-    @Override
-    public TriggeredPhase getTriggeredPhase() {
-        return TriggeredPhase.IN_PROCESS;
-    }
 }

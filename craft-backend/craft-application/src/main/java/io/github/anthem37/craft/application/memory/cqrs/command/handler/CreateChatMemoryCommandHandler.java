@@ -3,14 +3,14 @@ package io.github.anthem37.craft.application.memory.cqrs.command.handler;
 import cn.hutool.core.util.IdUtil;
 import dev.langchain4j.memory.ChatMemory;
 import io.github.anthem37.craft.application.memory.cqrs.command.CreateChatMemoryCommand;
-import io.github.anthem37.craft.domain.memory.event.BindMemoryChatMemoryConfigEvent;
+import io.github.anthem37.craft.application.memory.event.BindMemoryChatMemoryConfigEvent;
 import io.github.anthem37.craft.domain.memory.model.entity.ChatMemoryConfig;
 import io.github.anthem37.craft.domain.memory.model.factory.IChatMemoryFactory;
 import io.github.anthem37.craft.domain.memory.repository.IChatMemoryConfigDomainRepository;
 import io.github.anthem37.craft.domain.memory.service.IChatMemoryDomainService;
+import io.github.anthem37.easy.ddd.application.event.ApplicationEventPublisher;
 import io.github.anthem37.easy.ddd.common.assertion.Assert;
 import io.github.anthem37.easy.ddd.common.cqrs.command.ICommandHandler;
-import io.github.anthem37.easy.ddd.domain.event.DomainEventPublisher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -39,7 +39,7 @@ public class CreateChatMemoryCommandHandler implements ICommandHandler<CreateCha
         ChatMemoryConfig memoryConfig = chatMemoryConfigOptional.get();
         long memoryId = IdUtil.getSnowflake().nextId();
         // 发布绑定记忆事件
-        DomainEventPublisher.publish(new BindMemoryChatMemoryConfigEvent(memoryConfig, memoryId));
+        ApplicationEventPublisher.publish(new BindMemoryChatMemoryConfigEvent(memoryConfig, memoryId));
 
         return chatMemoryFactory.createChatMemory(memoryConfig, memoryId);
     }

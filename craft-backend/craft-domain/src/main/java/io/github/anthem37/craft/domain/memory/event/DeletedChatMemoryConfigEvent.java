@@ -12,7 +12,7 @@ import java.util.Map;
  * @since 2025/10/11 16:04:00
  */
 @Data
-public class DeletedChatMemoryConfigEvent implements IDomainEvent {
+public class DeletedChatMemoryConfigEvent implements IDomainEvent<Long> {
 
     /**
      * 事件类型，标识事件的名称
@@ -29,8 +29,8 @@ public class DeletedChatMemoryConfigEvent implements IDomainEvent {
      */
     private Map<String, Object> eventData = new HashMap<>();
 
-    public DeletedChatMemoryConfigEvent(ChatMemoryConfig ChatMemoryConfig) {
-        this.aggregateId = ChatMemoryConfig.getId();
-        eventData.put("chatMemoryConfig", ChatMemoryConfig);
+    public DeletedChatMemoryConfigEvent(ChatMemoryConfig chatMemoryConfig) {
+        this.aggregateId = chatMemoryConfig.getId();
+        eventData.put("chatMemoryConfig", chatMemoryConfig);
     }
 }
