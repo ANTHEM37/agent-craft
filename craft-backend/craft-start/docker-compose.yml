@@ -1,35 +1,122 @@
 version: '3.8'
+
+# =============================================
+# Agent Craft 完整部署配置
+# =============================================
+
 services:
+  # =============================================
+  # MySQL 数据库服务
+  # =============================================
   mysql:
     image: mysql:8.0
     container_name: craft-mysql
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: craft
+      MYSQL_USER: craft_user
+      MYSQL_PASSWORD: craft_password
+      TZ: Asia/Shanghai
     ports:
       - "3306:3306"
     volumes:
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
-    command: [ "--default-authentication-plugin=mysql_native_password", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci" ]
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d:ro
+    command: [
+      "--default-authentication-plugin=mysql_native_password",
+      "--character-set-server=utf8mb4",
+      "--collation-server=utf8mb4_0900_ai_ci",
+      "--innodb-buffer-pool-size=256M",
+      "--max-connections=200"
+    ]
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      interval: 5s
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 10s
       timeout: 5s
-      retries: 20
+      retries: 5
+      start_period: 30s
+    networks:
+      - craft-network
 
+  # =============================================
+  # Redis 缓存服务
+  # =============================================
   redis:
     image: redis:7-alpine
     container_name: craft-redis
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
     ports:
       - "6379:6379"
-    command: redis-server --appendonly yes --requirepass ""
+    command: redis-server --appendonly yes --requirepass "" --maxmemory 256mb --maxmemory-policy allkeys-lru
     volumes:
       - redis-data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
-      interval: 5s
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
       timeout: 3s
-      retries: 20
+      retries: 5
+      start_period: 10s
+    networks:
+      - craft-network
 
+  # =============================================
+  # Agent Craft 后端应用
+  # =============================================
+  craft-backend:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    container_name: craft-backend
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/craft?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: craft_user
+      SPRING_DATASOURCE_PASSWORD: craft_password
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      JAVA_OPTS: "-Xms512m -Xmx1024m -XX:+UseG1GC"
+      TZ: Asia/Shanghai
+    ports:
+      - "8080:8080"
+    volumes:
+      - app-logs:/app/logs
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - craft-network
+
+# =============================================
+# 数据卷配置
+# =============================================
 volumes:
+  mysql-data:
+    driver: local
   redis-data:
+    driver: local
+  app-logs:
+    driver: local
+
+# =============================================
+# 网络配置
+# =============================================
+networks:
+  craft-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
