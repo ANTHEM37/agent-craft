@@ -19,5 +19,5 @@ public class LLMDomainServiceConfig {
     public ILLMConfigDomainService llmConfigDomainService() {
         return new LLMConfigDomainService();
     }
-    
+
 }
